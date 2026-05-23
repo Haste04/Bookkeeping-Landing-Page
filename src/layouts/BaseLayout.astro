@@ -1,0 +1,41 @@
+---
+/**
+ * src/layouts/BaseLayout.astro
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Global HTML shell shared by every page.
+ * Owns: <html>, <head>, <body> wrapper, global stylesheet import.
+ * Pages slot their content in via the default <slot />.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "QE — Smart Bookkeeping for Modern Business",
+  description = "QE automates your subscription revenue and customer reporting. Connect your data and visualise your most important metrics instantly.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="icon" type="image/jpeg" href="/Logo.jpg" />
+  </head>
+
+  <body class="bg-white text-blue-600 antialiased font-sans">
+    <slot />
+    <script>
+      const el = document.getElementById("year");
+      if (el) el.textContent = String(new Date().getFullYear());
+    </script>
+  </body>
+</html>

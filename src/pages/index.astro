@@ -1,22 +1,53 @@
 ---
-
+/**
+ * src/pages/index.astro
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Landing page root. Imports the BaseLayout shell and composes all 7 sections
+ * from src/components/. Each component is fully self-contained.
+ *
+ * To add, reorder, or remove a section — just move the line here.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NavBar from "../components/NavBar.astro";
+import Hero from "../components/Hero.astro";
+import Features from "../components/Features.astro";
+import ValueProp from "../components/ValueProp.astro";
+import Testimonials from "../components/Testimonials.astro";
+import FAQ from "../components/FAQ.astro";
+import CTA from "../components/CTA.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Bookkeeping Landing Page</title>
-  </head>
-  <body
-    class="bg-slate-900 text-white flex flex-col items-center justify-center min-h-screen"
-  >
-    <h1 class="text-4xl font-bold text-blue-400 mb-2">
-      Bookkeeping Landing Page
-    </h1>
-    <p class="text-slate-400 text-lg">
-      Fresh start complete! Everything is configured perfectly. 🚀
-    </p>
-  </body>
-</html>
+<BaseLayout
+  title="QE — Smart Bookkeeping for Modern Business"
+  description="QE automates your subscription revenue and customer reporting."
+>
+  <!-- Section 1 — Navigation -->
+  <header>
+    <NavBar />
+  </header>
+
+  <main>
+    <!-- Section 1 — Hero -->
+    <Hero />
+
+    <!-- Section 2 — Features & Benefits -->
+    <Features />
+
+    <!-- Section 3 — Graphic Detail Value Proposition -->
+    <ValueProp />
+
+    <!-- Section 4 — Social Proof & Testimonials -->
+    <Testimonials />
+
+    <!-- Section 5 — FAQ / Handling Objections -->
+    <FAQ />
+
+    <!-- Section 6 — Final Call To Action -->
+    <CTA />
+  </main>
+
+  <!-- Section 7 — Footer -->
+  <Footer />
+</BaseLayout>

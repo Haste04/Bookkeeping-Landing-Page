@@ -1,0 +1,125 @@
+---
+/**
+ * src/components/Testimonials.astro
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Section 4 — Social Proof & Testimonials.
+ * Layout: responsive 3-column card grid.
+ * Each card: quote · avatar · name/role · social icons.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+interface Testimonial {
+  quote:       string;
+  name:        string;
+  description: string;
+  /** Path to avatar image — swap '' for your actual asset imports */
+  avatarSrc:   string;
+  facebookUrl: string;
+  twitterUrl:  string;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    quote:
+      '"All base UI elements are made using Nested Symbols and shared styles that are logically connected. Gorgeous, high-quality video sharing on desktop, mobile, tablet. All base UI elements are made using Nested Symbols"',
+    name:        'Name Surname',
+    description: 'Description',
+    avatarSrc:   '', // e.g. '/avatars/person-1.jpg'
+    facebookUrl: '#',
+    twitterUrl:  '#',
+  },
+  {
+    quote:
+      '"All base UI elements are made using Nested Symbols and shared styles that are logically connected. Gorgeous, high-quality video sharing on desktop, mobile, tablet. All base UI elements are made using Nested Symbols"',
+    name:        'Name Surname',
+    description: 'Description',
+    avatarSrc:   '',
+    facebookUrl: '#',
+    twitterUrl:  '#',
+  },
+  {
+    quote:
+      '"All base UI elements are made using Nested Symbols and shared styles that are logically connected. Gorgeous, high-quality video sharing on desktop, mobile, tablet. All base UI elements are made using Nested Symbols"',
+    name:        'Name Surname',
+    description: 'Description',
+    avatarSrc:   '',
+    facebookUrl: '#',
+    twitterUrl:  '#',
+  },
+];
+---
+
+<section
+  id="testimonials"
+  aria-labelledby="testimonials-headline"
+  class="px-6 py-16 md:px-12 lg:px-20 max-w-screen-xl mx-auto"
+>
+  <!-- Optional visible heading — uncomment to use -->
+  <!-- <h2 id="testimonials-headline" class="sr-only">What our clients say</h2> -->
+
+  <!-- 3-col grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {testimonials.map(({ quote, name, description, avatarSrc, facebookUrl, twitterUrl }) => (
+      <article
+        class="
+          flex flex-col justify-between
+          border border-blue-100 rounded-lg p-6 bg-white
+          hover:shadow-md transition-shadow
+        "
+      >
+        <!-- Quote -->
+        <blockquote class="text-blue-600 text-sm leading-relaxed italic mb-6">
+          {quote}
+        </blockquote>
+
+        <!-- Reviewer row -->
+        <footer class="flex items-end justify-between gap-4 mt-auto">
+          <div class="flex items-center gap-3">
+            <!-- Avatar — shows placeholder circle when avatarSrc is empty -->
+            {avatarSrc
+              ? <img
+                  src={avatarSrc}
+                  alt={`${name} avatar`}
+                  class="w-11 h-11 rounded-full object-cover shrink-0"
+                  loading="lazy"
+                />
+              : <div
+                  class="w-11 h-11 rounded-full bg-blue-100 shrink-0"
+                  aria-label="Reviewer avatar placeholder"
+                />
+            }
+            <div>
+              <p class="text-blue-600 font-semibold text-sm">{name}</p>
+              <p class="text-blue-600/60 text-xs">{description}</p>
+            </div>
+          </div>
+
+          <!-- Social links -->
+          <div class="flex items-center gap-2 shrink-0" aria-label="Social links">
+            <a href={facebookUrl} aria-label={`${name} on Facebook`}
+               class="text-blue-600 hover:opacity-70 transition-opacity">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                   class="w-5 h-5" fill="currentColor" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+            <a href={twitterUrl} aria-label={`${name} on Twitter`}
+               class="text-blue-600 hover:opacity-70 transition-opacity">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                   class="w-5 h-5" fill="currentColor" aria-hidden="true">
+                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+              </svg>
+            </a>
+          </div>
+        </footer>
+      </article>
+    ))}
+  </div>
+
+  <!-- Pagination dots -->
+  <div class="flex justify-center gap-2 mt-8" aria-label="Testimonial pagination" role="tablist">
+    <span class="w-2 h-2 rounded-full bg-blue-600 inline-block"></span>
+    <span class="w-2 h-2 rounded-full bg-blue-200 inline-block"></span>
+    <span class="w-2 h-2 rounded-full bg-blue-200 inline-block"></span>
+  </div>
+</section>

@@ -1,0 +1,148 @@
+---
+/**
+ * src/components/Features.astro
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Section 2 — Features & Benefits.
+ * Layout A (top):    3-column responsive feature card grid.
+ * Layout B (bottom): 2-column split — benefit copy left, illustration right.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+const features = [
+  {
+    title: 'Feature one',
+    description:
+      'All base UI elements are made using Nested Symbols and shared styles that are logically connected with one another.',
+    iconShape: 'grid', // used to pick the inline SVG variant below
+    rounded: false,
+    filled: false,
+  },
+  {
+    title: 'Feature two',
+    description:
+      'All base UI elements are made using Nested Symbols and shared styles that are logically connected with one another.',
+    iconShape: 'target',
+    rounded: true,
+    filled: false,
+  },
+  {
+    title: 'Feature three',
+    description:
+      'All base UI elements are made using Nested Symbols and shared styles that are logically connected with one another.',
+    iconShape: 'plus',
+    rounded: true,
+    filled: true,
+  },
+] as const;
+
+const benefits = [
+  'Showcase and embed your work with',
+  'Publish across social channels in a click',
+  'Sell your videos worldwide',
+  'Embed your work with',
+];
+---
+
+<section
+  id="features"
+  aria-labelledby="features-headline"
+  class="px-6 py-16 md:px-12 lg:px-20 max-w-screen-xl mx-auto"
+>
+
+  <!-- ── 2A: 3-column feature grid ─────────────────────────────────────── -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-20">
+    {features.map(({ title, description, iconShape, rounded, filled }) => (
+      <article class="flex flex-col gap-3">
+        <div class="flex items-center gap-3 mb-1">
+
+          <!-- Icon container -->
+          <div
+            class:list={[
+              'w-10 h-10 flex items-center justify-center shrink-0 border-2 border-blue-600',
+              rounded ? 'rounded-full' : 'rounded',
+              filled  ? 'bg-blue-600'  : '',
+            ]}
+            aria-hidden="true"
+          >
+            <!--
+              ╔══ ICON PLACEHOLDER ══════════════════════════════════════════╗
+              ║  Replace these inline SVGs with your chosen icon set.        ║
+              ║  Recommended: heroicons, lucide, or phosphor (all tree-shaken ║
+              ║  if imported individually from their Astro/ESM packages).     ║
+              ╚══════════════════════════════════════════════════════════════╝
+            -->
+            {iconShape === 'grid' && (
+              <svg viewBox="0 0 24 24" class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3"  width="7" height="9" rx="1"/>
+                <rect x="14" y="3"  width="7" height="5" rx="1"/>
+                <rect x="14" y="12" width="7" height="9" rx="1"/>
+                <rect x="3"  y="16" width="7" height="5" rx="1"/>
+              </svg>
+            )}
+            {iconShape === 'target' && (
+              <svg viewBox="0 0 24 24" class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="9"/>
+                <circle cx="12" cy="12" r="3" fill="currentColor"/>
+              </svg>
+            )}
+            {iconShape === 'plus' && (
+              <svg viewBox="0 0 24 24" class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M12 7v10M7 12h10" stroke-linecap="round"/>
+              </svg>
+            )}
+          </div>
+
+          <h3 class="font-bold text-blue-600 text-base">{title}</h3>
+        </div>
+
+        <p class="text-blue-600/75 text-sm leading-relaxed">{description}</p>
+      </article>
+    ))}
+  </div>
+
+  <!-- ── 2B: Benefit split row ─────────────────────────────────────────── -->
+  <div class="flex flex-col md:flex-row items-start gap-12 md:gap-16">
+
+    <!-- Left: headline + bullet list -->
+    <div class="flex-1 max-w-lg">
+      <h2
+        id="features-headline"
+        class="text-2xl sm:text-3xl font-extrabold leading-snug text-blue-600 mb-4"
+      >
+        Long headline on two lines to turn your visitors into users and achieve more
+      </h2>
+      <p class="text-blue-600/75 text-sm leading-relaxed mb-6">
+        Separated they live in Bookmarks right at the coast of the famous
+        Semantics, large language ocean.
+      </p>
+      <ul class="space-y-2 text-blue-600 text-sm">
+        {benefits.map((item) => (
+          <li class="flex items-start gap-2">
+            <span class="mt-1 shrink-0" aria-hidden="true">•</span>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Right: illustration placeholder -->
+    <div
+      class="flex-1 flex items-center justify-center w-full min-h-[260px]"
+      aria-hidden="true"
+    >
+      <!-- Replace with <Image> or your actual asset -->
+      <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-sm h-auto">
+        <circle cx="200" cy="170" r="140" fill="#EFF6FF"/>
+        <path d="M100 130 Q180 60 280 120 Q360 170 330 260 Q300 340 200 310 Q90 280 100 130Z"
+              fill="none" stroke="#2563EB" stroke-width="1.5" opacity="0.45"/>
+        <path d="M140 80 C220 20 360 100 400 180" fill="none" stroke="#2563EB" stroke-width="1.5" opacity="0.6"/>
+        <ellipse cx="200" cy="180" rx="26" ry="15" fill="none" stroke="#2563EB" stroke-width="1.5"/>
+        <circle  cx="200" cy="180" r="6" fill="none" stroke="#2563EB" stroke-width="1.5"/>
+        <path d="M160 140 L163 150 L174 150 L165 157 L168 168 L160 161 L151 168 L154 157 L145 150 L156 150Z"
+              fill="none" stroke="#2563EB" stroke-width="1.2"/>
+      </svg>
+    </div>
+  </div>
+
+</section>

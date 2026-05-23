@@ -1,0 +1,138 @@
+---
+/**
+ * src/components/Footer.astro
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Section 7 — Semantic Footer.
+ * Layout: 5-column grid — brand | links ×3 | newsletter subscribe input.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+const linkColumns = [
+  {
+    heading: "First column",
+    links: [
+      { label: "First page", href: "#" },
+      { label: "Second page", href: "#" },
+      { label: "Third", href: "#" },
+      { label: "Fourth", href: "#" },
+    ],
+  },
+  {
+    heading: "Second",
+    links: [
+      { label: "Fifth page", href: "#" },
+      { label: "Sixth page", href: "#" },
+      { label: "Eighth", href: "#" },
+    ],
+  },
+  {
+    heading: "Third",
+    links: [
+      { label: "Fifth page", href: "#" },
+      { label: "Sixth page", href: "#" },
+      { label: "Eighth", href: "#" },
+    ],
+  },
+] as const;
+---
+
+<footer
+  id="footer"
+  aria-label="Site footer"
+  class="border-t border-blue-100 px-6 py-12 md:px-12 lg:px-20"
+>
+  <!-- ── Main footer grid ─────────────────────────────────────────────────── -->
+  <div
+    class="max-w-screen-xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10"
+  >
+    <!-- Col 1: Brand -->
+    <div class="col-span-2 sm:col-span-3 lg:col-span-1">
+      <a
+        href="/"
+        class="text-blue-600 font-extrabold text-xl tracking-tight"
+        aria-label="ACME Home"
+      >
+        ACME
+      </a>
+    </div>
+
+    <!-- Cols 2–4: Link columns -->
+    {
+      linkColumns.map(({ heading, links }) => (
+        <nav aria-label={`${heading} links`}>
+          <h3 class="font-bold text-blue-600 text-sm mb-4">{heading}</h3>
+          <ul class="space-y-2 text-sm">
+            {links.map(({ label, href }) => (
+              <li>
+                <a
+                  href={href}
+                  class="text-blue-600 hover:opacity-70 transition-opacity"
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))
+    }
+
+    <!-- Col 5: Newsletter subscribe -->
+    <div>
+      <h3 class="font-bold text-blue-600 text-sm mb-4">Subscribe</h3>
+
+      <!--
+        Wire the action/method up to your email provider
+        (Mailchimp, ConvertKit, Resend, etc.) or an Astro API route.
+      -->
+      <div
+        class="flex items-center border border-blue-200 rounded bg-blue-50 overflow-hidden"
+      >
+        <label for="footer-email" class="sr-only">Email address</label>
+        <input
+          id="footer-email"
+          type="email"
+          name="email"
+          placeholder="Placeholder"
+          class="flex-1 min-w-0 bg-transparent
+            text-blue-600 text-sm placeholder:text-blue-400
+            px-3 py-2.5 focus:outline-none"
+        />
+        <!-- Submit arrow -->
+        <button
+          type="submit"
+          aria-label="Subscribe to newsletter"
+          class="flex items-center justify-center w-10 h-10 shrink-0
+            bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="w-4 h-4"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M22 2L11 13"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              fill="none"></path>
+            <path d="M22 2L15 22 11 13 2 9l20-7z"></path>
+          </svg>
+        </button>
+      </div>
+
+      <p class="text-blue-400 text-xs mt-2 leading-snug">
+        Join our newsletter to stay up to date on features and releases.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Bottom bar ───────────────────────────────────────────────────────── -->
+  <div class="max-w-screen-xl mx-auto mt-10 pt-6 border-t border-blue-50">
+    <p class="text-blue-400 text-xs text-center">
+      &copy; <span id="year"></span> ACME Inc. All rights reserved.
+    </p>
+  </div>
+</footer>

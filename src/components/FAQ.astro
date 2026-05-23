@@ -1,0 +1,100 @@
+---
+/**
+ * src/components/FAQ.astro
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Section 5 — FAQ / Handling Objections.
+ * Layout: centred intro block + vertical <details> accordion stack.
+ * Pure-CSS accordion — no JS needed. Arrow rotation handled in global.css.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+interface FAQItem {
+  question: string;
+  answer:   string;
+}
+
+const faqs: FAQItem[] = [
+  {
+    question: 'System requirements',
+    answer:
+      'ACME works on all modern browsers (Chrome, Firefox, Safari, Edge) and requires no additional software installation. A stable internet connection is recommended.',
+  },
+  {
+    question: 'Where can I learn more about how to get started?',
+    answer:
+      'Visit our comprehensive documentation portal or watch our onboarding video series — both available after signing up for free.',
+  },
+  {
+    question: 'Is ACME available for Linux?',
+    answer:
+      'Yes — ACME is fully browser-based so it runs equally well on any Linux distribution with a modern web browser.',
+  },
+  {
+    question: 'What about a version for iOS?',
+    answer:
+      'Our native iOS app is currently in beta. Sign up to join the early access list and be among the first to try it.',
+  },
+  {
+    question: 'Will I automatically be charged when my trial ends?',
+    answer:
+      'No. Your trial ends without any automatic charge. You can upgrade to a paid plan at any time from your account dashboard.',
+  },
+];
+---
+
+<section
+  id="faq"
+  aria-labelledby="faq-headline"
+  class="px-6 py-16 md:px-12 lg:px-20 max-w-screen-xl mx-auto"
+>
+  <!-- Centred intro -->
+  <div class="max-w-xl mx-auto text-center mb-12">
+    <h2
+      id="faq-headline"
+      class="text-3xl sm:text-4xl font-extrabold text-blue-600 mb-4"
+    >
+      Short headline
+    </h2>
+    <p class="text-blue-600/75 text-sm sm:text-base leading-relaxed">
+      ACME automates your subscription revenue and customer reporting.
+      Just connect your data and ACME will calculate and visualise your
+      most important metrics.
+    </p>
+  </div>
+
+  <!-- Accordion list -->
+  <div
+    class="max-w-2xl mx-auto divide-y divide-blue-100"
+    role="list"
+    aria-label="Frequently asked questions"
+  >
+    {faqs.map(({ question, answer }) => (
+      <details class="group py-4" role="listitem">
+        <summary
+          class="
+            flex items-center justify-between
+            cursor-pointer list-none
+            text-blue-600 font-medium text-sm sm:text-base gap-4
+          "
+        >
+          {question}
+          <!-- Chevron — rotated via .faq-arrow CSS in global.css -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="faq-arrow w-5 h-5 shrink-0 text-blue-600"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <polyline points="9 18 15 12 9 6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="pt-3 text-blue-600/75 text-sm leading-relaxed">
+          {answer}
+        </div>
+      </details>
+    ))}
+  </div>
+</section>

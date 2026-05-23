@@ -1,0 +1,123 @@
+---
+/**
+ * src/components/Hero.astro
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Section 1 — Hero Block.
+ * Boutique aesthetic featuring organic lines, editorial serifs, and asymmetric framing.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+---
+
+<section
+  id="hero"
+  aria-labelledby="hero-headline"
+  class="flex flex-col-reverse md:flex-row
+    items-center justify-between
+    gap-12 md:gap-8
+    px-6 py-12
+    md:px-12 lg:px-20
+    md:py-16 lg:py-24
+    max-w-screen-xl mx-auto
+    bg-[#FDFBF7]"
+>
+  <div class="flex-1 max-w-xl">
+    <h1
+      id="hero-headline"
+      class="text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.15] text-[#333D29] font-serif mb-6"
+    >
+      For the woman building a business <span class="italic text-[#A36A52]"
+        >for the life she wants</span
+      >
+    </h1>
+
+    <p
+      class="text-[#333D29]/75 text-base sm:text-lg leading-relaxed mb-8 max-w-md font-sans"
+    >
+      Between managing late nights and growing your vision, your numbers
+      shouldn't feel overwhelming. Get custom financial tracking built
+      completely around your life, your business, and your goals.
+    </p>
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-5">
+      <a
+        href="#cta"
+        class="inline-block text-center bg-[#A36A52] text-[#FDFBF7] font-medium text-sm tracking-wide
+          px-8 py-3.5 hover:bg-[#8F5942] transition-colors duration-300
+          rounded-tl-2xl rounded-br-2xl
+          focus-visible:outline focus-visible:outline-2
+          focus-visible:outline-offset-2 focus-visible:outline-[#A36A52]"
+      >
+        Book your FREE consult
+      </a>
+
+      <p
+        class="text-[#333D29]/70 text-xs sm:text-sm leading-snug font-sans max-w-[240px]"
+      >
+        Join local independent business owners who found clarity in their books.
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="flex-1 flex items-center justify-center w-full max-w-sm md:max-w-md lg:max-w-lg"
+    aria-hidden="true"
+  >
+    <div
+      class="relative w-full aspect-[4/5] sm:aspect-[1] md:aspect-[4/5] max-h-[480px]"
+    >
+      <div
+        class="absolute inset-0 bg-[#333D29]/5 rounded-bl-[4rem] rounded-tr-[4rem] transform translate-x-3 translate-y-3"
+      >
+      </div>
+
+      <div
+        class="absolute inset-0 bg-gradient-to-tr from-[#F5F0E6] to-[#EAE3D2] rounded-tl-[6rem] rounded-br-[6rem] overflow-hidden flex flex-col items-center justify-center p-8 border border-[#333D29]/10"
+      >
+        <svg
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-32 h-32 text-[#333D29]/20 mb-4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+        >
+          <img
+            src="/Hero/Hero 1.jpg"
+            alt="Queenie's Bookkeeping lifestyle workspace scene"
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+
+          <img
+            src="/Hero/Hero 2.jpg"
+            alt="Queenie's Bookkeeping client consultation detail"
+            class="absolute inset-0 w-full h-full object-cover animate-crossfade"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /**
+   * Over a total duration of 30 seconds (15 seconds per image):
+   * 0% to 45%: Image 2 is hidden (opacity 0), showing Image 1.
+   * 50% to 95%: Image 2 is fully visible (opacity 1), masking Image 1.
+   * Crossfade transitions occur smoothly at the 45%-50% and 95%-100% boundary points.
+   */
+  @keyframes crossfade {
+    0%,
+    45%,
+    100% {
+      opacity: 0;
+    }
+    50%,
+    95% {
+      opacity: 1;
+    }
+  }
+
+  .animate-crossfade {
+    animation: crossfade 30s infinite ease-in-out;
+  }
+</style>

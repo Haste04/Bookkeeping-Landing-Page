@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+/* ── FAQ accordion (pure-CSS toggle) ───────────────────── */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+.faq-arrow {
+  transition: transform 0.25s ease;
+}
+details[open] .faq-arrow {
+  transform: rotate(90deg);
+}

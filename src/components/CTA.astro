@@ -1,0 +1,55 @@
+---
+/**
+ * src/components/CTA.astro
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Section 6 — Final Call To Action.
+ * Layout: full-width centred container — tagline · headline · CTA button.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+interface Props {
+  tagline?: string;
+  headline?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+const {
+  tagline = "Tagline",
+  headline = "Long headline to turn your visitors into users",
+  ctaLabel = "Action",
+  ctaHref = "#",
+} = Astro.props;
+---
+
+<section
+  id="cta"
+  aria-labelledby="cta-headline"
+  class="px-6 py-20 md:px-12 lg:px-20"
+>
+  <div class="max-w-2xl mx-auto text-center flex flex-col items-center gap-6">
+    <!-- Minimalist tagline -->
+    <p class="text-blue-600 text-sm tracking-widest uppercase font-medium">
+      {tagline}
+    </p>
+
+    <!-- Conversion headline -->
+    <h2
+      id="cta-headline"
+      class="text-4xl sm:text-5xl font-extrabold leading-tight text-blue-600"
+    >
+      {headline}
+    </h2>
+
+    <!-- Primary CTA button -->
+    <a
+      href={ctaHref}
+      class="inline-block bg-blue-600 text-white font-semibold text-sm
+        px-8 py-3.5 hover:bg-blue-700 transition-colors
+        focus-visible:outline focus-visible:outline-2
+        focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+    >
+      {ctaLabel}
+    </a>
+  </div>
+</section>
