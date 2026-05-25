@@ -3,11 +3,11 @@
  * src/layouts/BaseLayout.astro
  * ─────────────────────────────────────────────────────────────────────────────
  * Global HTML shell shared by every page.
- * Owns: <html>, <head>, <body> wrapper, global stylesheet import.
- * Pages slot their content in via the default <slot />.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 import "../styles/global.css";
+// 1. Import the progress bar component
+import PageProgressBar from "../components/PageProgressBar.astro";
 
 interface Props {
   title?: string;
@@ -15,8 +15,8 @@ interface Props {
 }
 
 const {
-  title = "QE — Smart Bookkeeping for Modern Business",
-  description = "QE automates your subscription revenue and customer reporting. Connect your data and visualise your most important metrics instantly.",
+  title = "Balanced Roots Bookkeeping — Intentional Financial Clarity",
+  description = "Boutique bookkeeping systems and custom workflows designed specifically for creative entrepreneurs and independent women-led spaces.",
 } = Astro.props;
 ---
 
@@ -27,15 +27,14 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-
     <link rel="icon" type="image/jpeg" href="/Logo.jpg" />
   </head>
 
-  <body class="bg-white text-blue-600 antialiased font-sans">
+  <body
+    class="bg-[#FDFBF7] text-[#333D29] antialiased selection:bg-[#A36A52]/20 selection:text-[#333D29]"
+  >
+    <PageProgressBar />
+
     <slot />
-    <script>
-      const el = document.getElementById("year");
-      if (el) el.textContent = String(new Date().getFullYear());
-    </script>
   </body>
 </html>

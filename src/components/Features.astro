@@ -3,146 +3,193 @@
  * src/components/Features.astro
  * ─────────────────────────────────────────────────────────────────────────────
  * Section 2 — Features & Benefits.
- * Layout A (top):    3-column responsive feature card grid.
- * Layout B (bottom): 2-column split — benefit copy left, illustration right.
+ * Layout A (top):    3-column responsive value-add card grid.
+ * Layout B (bottom): 2-column split — holistic lifestyle benefit messaging.
+ * Full-width background wrapper applied to prevent layout cropping on wide screens.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
 const features = [
   {
-    title: 'Feature one',
+    title: "Tailored Financial Tracking",
     description:
-      'All base UI elements are made using Nested Symbols and shared styles that are logically connected with one another.',
-    iconShape: 'grid', // used to pick the inline SVG variant below
-    rounded: false,
-    filled: false,
+      "No complex software formulas or confusing structures. We build clean, intuitive bookkeeping systems customized explicitly for your daily workflow.",
+    iconShape: "bookOpen",
   },
   {
-    title: 'Feature two',
+    title: "Tax Season Readiness",
     description:
-      'All base UI elements are made using Nested Symbols and shared styles that are logically connected with one another.',
-    iconShape: 'target',
-    rounded: true,
-    filled: false,
+      "Avoid the late-night panic. Every transaction is meticulously categorized and preserved, ensuring you have a seamless, stress-free tax filing experience.",
+    iconShape: "calendar",
   },
   {
-    title: 'Feature three',
+    title: "Clarity Over Confusion",
     description:
-      'All base UI elements are made using Nested Symbols and shared styles that are logically connected with one another.',
-    iconShape: 'plus',
-    rounded: true,
-    filled: true,
+      "Receive transparent monthly financial summaries that help you understand exactly where your revenue goes, allowing you to scale with complete confidence.",
+    iconShape: "sparkles",
   },
 ] as const;
 
 const benefits = [
-  'Showcase and embed your work with',
-  'Publish across social channels in a click',
-  'Sell your videos worldwide',
-  'Embed your work with',
+  "Reclaim hours of personal time every single week",
+  "Eliminate the underlying guilt of unorganized receipts",
+  "Understand your true profitability with zero guesswork",
+  "Gain an intentional financial partner who truly understands your business lifestyle",
 ];
 ---
 
-<section
-  id="features"
-  aria-labelledby="features-headline"
-  class="px-6 py-16 md:px-12 lg:px-20 max-w-screen-xl mx-auto"
->
+<div class="w-full bg-[#FDFBF7]">
+  <section
+    id="features"
+    aria-labelledby="features-headline"
+    class="px-6 py-16 md:px-12 lg:px-20 max-w-screen-xl mx-auto"
+  >
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12 mb-24"
+    >
+      {
+        features.map(({ title, description, iconShape }) => (
+          <article class="flex flex-col gap-4 group">
+            <div class="flex items-center gap-4">
+              <div
+                class="w-12 h-12 flex items-center justify-center shrink-0 
+                     bg-[#333D29]/5 text-[#A36A52] rounded-tl-xl rounded-br-xl 
+                     group-hover:bg-[#A36A52]/10 transition-colors duration-300"
+                aria-hidden="true"
+              >
+                {iconShape === "bookOpen" && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                  </svg>
+                )}
+                {iconShape === "calendar" && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="18" y2="10" />
+                  </svg>
+                )}
+                {iconShape === "sparkles" && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707.707M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z" />
+                  </svg>
+                )}
+              </div>
 
-  <!-- ── 2A: 3-column feature grid ─────────────────────────────────────── -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-20">
-    {features.map(({ title, description, iconShape, rounded, filled }) => (
-      <article class="flex flex-col gap-3">
-        <div class="flex items-center gap-3 mb-1">
+              <h3 class="font-serif font-medium text-[#333D29] text-lg tracking-wide">
+                {title}
+              </h3>
+            </div>
 
-          <!-- Icon container -->
+            <p class="text-[#333D29]/75 text-sm leading-relaxed font-sans">
+              {description}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+      <div class="flex-1 max-w-lg">
+        <h2
+          id="features-headline"
+          class="text-3xl sm:text-4xl font-serif font-normal leading-[1.25] text-[#333D29] mb-5"
+        >
+          You deserve a bookkeeper <span class="italic text-[#A36A52]"
+            >who gets your life</span
+          >, not just your books.
+        </h2>
+
+        <p
+          class="text-[#333D29]/75 text-sm sm:text-base leading-relaxed mb-8 font-sans"
+        >
+          When your business financial records are organized with care, you
+          don't just gain a clear view of your revenue channels—you protect your
+          creative energy and make room for the life you love.
+        </p>
+
+        <ul class="space-y-3.5 text-[#333D29]/90 text-sm font-sans">
+          {
+            benefits.map((item) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 shrink-0 text-[#A36A52]" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </span>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div
+        class="flex-1 flex items-center justify-center w-full"
+        aria-hidden="true"
+      >
+        <div
+          class="relative w-full max-w-sm aspect-[1.1] bg-[#333D29]/5 rounded-br-[5rem] rounded-tl-[2rem] p-6 flex items-center justify-center border border-[#333D29]/10"
+        >
           <div
-            class:list={[
-              'w-10 h-10 flex items-center justify-center shrink-0 border-2 border-blue-600',
-              rounded ? 'rounded-full' : 'rounded',
-              filled  ? 'bg-blue-600'  : '',
-            ]}
-            aria-hidden="true"
+            class="absolute inset-4 border border-dashed border-[#333D29]/10 rounded-br-[4rem] rounded-tl-[1.5rem]"
           >
-            <!--
-              ╔══ ICON PLACEHOLDER ══════════════════════════════════════════╗
-              ║  Replace these inline SVGs with your chosen icon set.        ║
-              ║  Recommended: heroicons, lucide, or phosphor (all tree-shaken ║
-              ║  if imported individually from their Astro/ESM packages).     ║
-              ╚══════════════════════════════════════════════════════════════╝
-            -->
-            {iconShape === 'grid' && (
-              <svg viewBox="0 0 24 24" class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3"  width="7" height="9" rx="1"/>
-                <rect x="14" y="3"  width="7" height="5" rx="1"/>
-                <rect x="14" y="12" width="7" height="9" rx="1"/>
-                <rect x="3"  y="16" width="7" height="5" rx="1"/>
-              </svg>
-            )}
-            {iconShape === 'target' && (
-              <svg viewBox="0 0 24 24" class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="9"/>
-                <circle cx="12" cy="12" r="3" fill="currentColor"/>
-              </svg>
-            )}
-            {iconShape === 'plus' && (
-              <svg viewBox="0 0 24 24" class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="9"/>
-                <path d="M12 7v10M7 12h10" stroke-linecap="round"/>
-              </svg>
-            )}
           </div>
 
-          <h3 class="font-bold text-blue-600 text-base">{title}</h3>
+          <div class="text-center z-10 px-6">
+            <svg
+              viewBox="0 0 24 24"
+              class="w-10 h-10 text-[#A36A52]/30 mx-auto mb-3"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1"
+            >
+              <path
+                d="M12 22V2M12 12c0-3.314 2.686-6 6-6M12 17c-3.314 0-6-2.686-6-6"
+                stroke-linecap="round"></path>
+            </svg>
+            <span
+              class="block text-xs tracking-[0.15em] uppercase font-serif text-[#333D29]/50"
+            >
+              Workspace Vignette / Brand Detail Image
+            </span>
+          </div>
         </div>
-
-        <p class="text-blue-600/75 text-sm leading-relaxed">{description}</p>
-      </article>
-    ))}
-  </div>
-
-  <!-- ── 2B: Benefit split row ─────────────────────────────────────────── -->
-  <div class="flex flex-col md:flex-row items-start gap-12 md:gap-16">
-
-    <!-- Left: headline + bullet list -->
-    <div class="flex-1 max-w-lg">
-      <h2
-        id="features-headline"
-        class="text-2xl sm:text-3xl font-extrabold leading-snug text-blue-600 mb-4"
-      >
-        Long headline on two lines to turn your visitors into users and achieve more
-      </h2>
-      <p class="text-blue-600/75 text-sm leading-relaxed mb-6">
-        Separated they live in Bookmarks right at the coast of the famous
-        Semantics, large language ocean.
-      </p>
-      <ul class="space-y-2 text-blue-600 text-sm">
-        {benefits.map((item) => (
-          <li class="flex items-start gap-2">
-            <span class="mt-1 shrink-0" aria-hidden="true">•</span>
-            {item}
-          </li>
-        ))}
-      </ul>
+      </div>
     </div>
-
-    <!-- Right: illustration placeholder -->
-    <div
-      class="flex-1 flex items-center justify-center w-full min-h-[260px]"
-      aria-hidden="true"
-    >
-      <!-- Replace with <Image> or your actual asset -->
-      <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-sm h-auto">
-        <circle cx="200" cy="170" r="140" fill="#EFF6FF"/>
-        <path d="M100 130 Q180 60 280 120 Q360 170 330 260 Q300 340 200 310 Q90 280 100 130Z"
-              fill="none" stroke="#2563EB" stroke-width="1.5" opacity="0.45"/>
-        <path d="M140 80 C220 20 360 100 400 180" fill="none" stroke="#2563EB" stroke-width="1.5" opacity="0.6"/>
-        <ellipse cx="200" cy="180" rx="26" ry="15" fill="none" stroke="#2563EB" stroke-width="1.5"/>
-        <circle  cx="200" cy="180" r="6" fill="none" stroke="#2563EB" stroke-width="1.5"/>
-        <path d="M160 140 L163 150 L174 150 L165 157 L168 168 L160 161 L151 168 L154 157 L145 150 L156 150Z"
-              fill="none" stroke="#2563EB" stroke-width="1.2"/>
-      </svg>
-    </div>
-  </div>
-
-</section>
+  </section>
+</div>

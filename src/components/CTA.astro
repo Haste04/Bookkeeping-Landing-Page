@@ -3,7 +3,7 @@
  * src/components/CTA.astro
  * ─────────────────────────────────────────────────────────────────────────────
  * Section 6 — Final Call To Action.
- * Layout: full-width centred container — tagline · headline · CTA button.
+ * Layout: Full-width deep forest background — tagline · headline · premium pill CTA.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
@@ -15,41 +15,59 @@ interface Props {
 }
 
 const {
-  tagline = "Tagline",
-  headline = "Long headline to turn your visitors into users",
-  ctaLabel = "Action",
+  tagline = "RECLAIM YOUR FOCUS",
+  headline = "Ready to transition from financial overwhelm to absolute clarity?",
+  ctaLabel = "Book an Intentional Consultation",
   ctaHref = "#",
 } = Astro.props;
 ---
 
-<section
-  id="cta"
-  aria-labelledby="cta-headline"
-  class="px-6 py-20 md:px-12 lg:px-20"
->
-  <div class="max-w-2xl mx-auto text-center flex flex-col items-center gap-6">
-    <!-- Minimalist tagline -->
-    <p class="text-blue-600 text-sm tracking-widest uppercase font-medium">
-      {tagline}
-    </p>
+<div class="w-full bg-[#333D29]">
+  <section
+    id="cta"
+    aria-labelledby="cta-headline"
+    class="px-6 py-20 md:px-12 lg:px-20 max-w-screen-xl mx-auto"
+  >
+    <div class="max-w-3xl mx-auto text-center flex flex-col items-center gap-6">
+      <p
+        class="text-[#A36A52] text-xs sm:text-sm tracking-[0.2em] uppercase font-sans font-semibold"
+      >
+        {tagline}
+      </p>
 
-    <!-- Conversion headline -->
-    <h2
-      id="cta-headline"
-      class="text-4xl sm:text-5xl font-extrabold leading-tight text-blue-600"
-    >
-      {headline}
-    </h2>
+      <h2
+        id="cta-headline"
+        class="text-3xl sm:text-4xl md:text-5xl font-serif font-normal leading-[1.2] text-[#FDFBF7]"
+      >
+        {
+          headline.includes("absolute clarity?") ? (
+            <>
+              Ready to transition from financial overwhelm to{" "}
+              <span class="italic text-[#A36A52]">absolute clarity?</span>
+            </>
+          ) : (
+            headline
+          )
+        }
+      </h2>
 
-    <!-- Primary CTA button -->
-    <a
-      href={ctaHref}
-      class="inline-block bg-blue-600 text-white font-semibold text-sm
-        px-8 py-3.5 hover:bg-blue-700 transition-colors
-        focus-visible:outline focus-visible:outline-2
-        focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-    >
-      {ctaLabel}
-    </a>
-  </div>
-</section>
+      <p
+        class="text-[#FDFBF7]/80 text-sm sm:text-base font-sans max-w-xl leading-relaxed mb-4"
+      >
+        Let’s dust off the spreadsheets, organize your historical
+        disorganization, and build a beautiful financial system tailored
+        precisely to your creative routine.
+      </p>
+
+      <a
+        href={ctaHref}
+        class="inline-block bg-[#A36A52] text-[#FDFBF7] font-sans font-medium text-sm tracking-wide
+          px-8 py-4 rounded-tl-xl rounded-br-xl rounded-tr-sm rounded-bl-sm
+          hover:bg-[#A36A52]/90 hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5
+          focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#A36A52] focus-visible:ring-offset-[#333D29]"
+      >
+        {ctaLabel}
+      </a>
+    </div>
+  </section>
+</div>

@@ -3,98 +3,120 @@
  * src/components/FAQ.astro
  * ─────────────────────────────────────────────────────────────────────────────
  * Section 5 — FAQ / Handling Objections.
- * Layout: centred intro block + vertical <details> accordion stack.
- * Pure-CSS accordion — no JS needed. Arrow rotation handled in global.css.
+ * Layout: left-aligned/centered organic header block + refined <details> accordion stack.
+ * Pure-CSS accordion — arrow rotation handled dynamically with Tailwind group utilities.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
 interface FAQItem {
   question: string;
-  answer:   string;
+  answer: string;
 }
 
 const faqs: FAQItem[] = [
   {
-    question: 'System requirements',
+    question: "How does the custom bookkeeping setup process look like?",
     answer:
-      'ACME works on all modern browsers (Chrome, Firefox, Safari, Edge) and requires no additional software installation. A stable internet connection is recommended.',
+      "We begin with an intentional review of your current systems during our consultation. From there, I build a custom, organized financial workflow mapped closely to your specific creative routines so you can say goodbye to messy spreadsheets.",
   },
   {
-    question: 'Where can I learn more about how to get started?',
+    question: "I am far behind on my books. Can you help me catch up?",
     answer:
-      'Visit our comprehensive documentation portal or watch our onboarding video series — both available after signing up for free.',
+      "Absolutely. There is zero judgment here. We can handle complete multi-month or full-year financial catch-ups, matching up mixed receipts and bank balances to get your records fully organized, accurate, and tax-ready.",
   },
   {
-    question: 'Is ACME available for Linux?',
+    question:
+      "What financial software or tools do you design workflows around?",
     answer:
-      'Yes — ACME is fully browser-based so it runs equally well on any Linux distribution with a modern web browser.',
+      "I customize tracking methods around clean modern frameworks like QuickBooks Online or specialized digital ledgers depending on your business model—ensuring your automation works beautifully without any complex tech jargon.",
   },
   {
-    question: 'What about a version for iOS?',
+    question: "How do monthly financial health check-ins work?",
     answer:
-      'Our native iOS app is currently in beta. Sign up to join the early access list and be among the first to try it.',
+      "At the close of every month, you receive a beautifully clear, tailored profit summary breakdown. We review your actual cash flow trends and true profitability, giving you complete peace of mind to focus purely on expanding your business.",
   },
   {
-    question: 'Will I automatically be charged when my trial ends?',
+    question: "Can you work directly with my CPA for tax season filing?",
     answer:
-      'No. Your trial ends without any automatic charge. You can upgrade to a paid plan at any time from your account dashboard.',
+      "Yes, seamlessly. When tax season arrives, I provide organized, fully reconciled statements and asset reports directly to your CPA, making the entire annual transition stress-free and smooth.",
   },
 ];
 ---
 
-<section
-  id="faq"
-  aria-labelledby="faq-headline"
-  class="px-6 py-16 md:px-12 lg:px-20 max-w-screen-xl mx-auto"
->
-  <!-- Centred intro -->
-  <div class="max-w-xl mx-auto text-center mb-12">
-    <h2
-      id="faq-headline"
-      class="text-3xl sm:text-4xl font-extrabold text-blue-600 mb-4"
-    >
-      Short headline
-    </h2>
-    <p class="text-blue-600/75 text-sm sm:text-base leading-relaxed">
-      ACME automates your subscription revenue and customer reporting.
-      Just connect your data and ACME will calculate and visualise your
-      most important metrics.
-    </p>
-  </div>
-
-  <!-- Accordion list -->
-  <div
-    class="max-w-2xl mx-auto divide-y divide-blue-100"
-    role="list"
-    aria-label="Frequently asked questions"
+<div class="w-full bg-[#FDFBF7]">
+  <section
+    id="faq"
+    aria-labelledby="faq-headline"
+    class="px-6 py-16 md:px-12 lg:px-20 max-w-screen-xl mx-auto"
   >
-    {faqs.map(({ question, answer }) => (
-      <details class="group py-4" role="listitem">
-        <summary
-          class="
-            flex items-center justify-between
-            cursor-pointer list-none
-            text-blue-600 font-medium text-sm sm:text-base gap-4
-          "
+    <div class="max-w-xl mx-auto text-center mb-16">
+      <h2
+        id="faq-headline"
+        class="text-3xl sm:text-4xl font-serif font-normal leading-[1.25] text-[#333D29] mb-4"
+      >
+        Answering your <span class="italic text-[#A36A52]"
+          >frequently asked questions</span
         >
-          {question}
-          <!-- Chevron — rotated via .faq-arrow CSS in global.css -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            class="faq-arrow w-5 h-5 shrink-0 text-blue-600"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            aria-hidden="true"
+      </h2>
+      <p
+        class="text-[#333D29]/70 text-sm sm:text-base font-sans leading-relaxed"
+      >
+        Let’s bring absolute clarity to how we partner together. Here is exactly
+        what you can expect when organizing your business financial systems.
+      </p>
+    </div>
+
+    <div
+      class="max-w-3xl mx-auto divide-y divide-[#333D29]/10 border-b border-[#333D29]/10"
+      role="list"
+      aria-label="Frequently asked questions list"
+    >
+      {
+        faqs.map(({ question, answer }) => (
+          <details
+            class="group py-5 transition-colors duration-200"
+            role="listitem"
           >
-            <polyline points="9 18 15 12 9 6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </summary>
-        <div class="pt-3 text-blue-600/75 text-sm leading-relaxed">
-          {answer}
-        </div>
-      </details>
-    ))}
-  </div>
-</section>
+            <summary
+              class="
+              flex items-center justify-between
+              cursor-pointer list-none
+              text-[#333D29] font-medium text-base sm:text-lg gap-4
+              hover:text-[#A36A52] transition-colors focus:outline-none select-none
+            "
+            >
+              <span class="font-sans font-medium tracking-wide">
+                {question}
+              </span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                class="w-5 h-5 shrink-0 text-[#A36A52] transition-transform duration-300 transform group-open:rotate-90"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <polyline
+                  points="9 18 15 12 9 6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </summary>
+            <div class="pt-3 pb-2 text-[#333D29]/75 text-sm sm:text-base leading-relaxed font-sans max-w-2xl">
+              {answer}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+</div>
+
+<style>
+  /* Hide native summary marker arrows cleanly across alternative webkit engine browsers */
+  summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

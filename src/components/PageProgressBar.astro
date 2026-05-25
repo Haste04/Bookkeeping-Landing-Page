@@ -1,0 +1,70 @@
+---
+/**
+ * src/components/PageProgressBar.astro
+ * ─────────────────────────────────────────────────────────────────────────────
+ * A minimalist, sticky reading progress indicator positioned at the top of the viewport.
+ * Uses the brand's terracotta accent color to show how far down the page the reader is.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+---
+
+<div
+  class="fixed top-0 left-0 w-full h-1 bg-[#333D29]/5 z-[100] pointer-events-none"
+  role="progressbar"
+  aria-label="Reading progress tracking bar"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-valuenow="0"
+  id="progress-container"
+>
+  <div
+    id="scroll-progress-indicator"
+    class="h-full w-0 bg-[#A36A52] transition-all duration-75 ease-out will-change-[width]"
+  >
+  </div>
+</div>
+
+<script>
+  function initProgressBar() {
+    const progressBar = document.getElementById("scroll-progress-indicator");
+    const container = document.getElementById("progress-container");
+    if (!progressBar) return;
+
+    function updateProgress() {
+      // Get current scroll position from top of document
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+      // Calculate total scrollable page height matrix
+      // Total document height minus viewport screen window height
+      const docHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+
+      // Calculate scroll fraction percentage (handling cases with zero scrollable margins safely)
+      const scrollPercentage =
+        docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+      // Apply exact calculated percentage matching to element inline width styling rules
+      progressBar.style.width = `${scrollPercentage}%`;
+
+      // Update accessibility parameters
+      container?.setAttribute(
+        "aria-valuenow",
+        Math.round(scrollPercentage).toString(),
+      );
+    }
+
+    // Attach passive browser scroll event handler to maximize layout painting performance
+    window.addEventListener("scroll", updateProgress, { passive: true });
+
+    // Recalculate if document heights mutate on dynamic resizing frames
+    window.addEventListener("resize", updateProgress, { passive: true });
+
+    // Initial pass-through calculation run to ensure exact position matches on immediate page reloads
+    updateProgress();
+  }
+
+  // Safe Lifecycle Execution Guard handles transitions across standard SPA/Astro navigation routines
+  initProgressBar();
+  document.addEventListener("astro:after-swap", initProgressBar);
+</script>

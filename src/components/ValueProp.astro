@@ -3,100 +3,103 @@
  * src/components/ValueProp.astro
  * ─────────────────────────────────────────────────────────────────────────────
  * Section 3 — Graphic Detail Value Proposition.
- * Layout: reverse 2-column — phone frame left, copy + checklist right.
+ * Layout: reverse 2-column — framing visual left, copy + custom checklist right.
+ * Boutique aesthetic featuring organic lines, editorial serifs, and full-bleed bounds.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
 const checkItems = [
-  'Showcase and embed your work with',
-  'Publish across social channels in a click',
-  'Sell your videos worldwide',
+  "Custom-built bookkeeping templates that work around your daily life",
+  "On-demand profit summaries delivered with absolute aesthetic clarity",
+  "A trusted financial partner helping you protect your creative energy",
 ];
 ---
 
-<section
-  id="value-prop"
-  aria-labelledby="value-prop-headline"
-  class="px-6 py-16 md:px-12 lg:px-20 max-w-screen-xl mx-auto"
->
-  <div class="flex flex-col md:flex-row items-stretch gap-12 md:gap-16">
-
-    <!-- ── Left: app / mobile screen mock ────────────────────────────────── -->
-    <div
-      class="
-        flex-1 flex items-center justify-center
-        bg-blue-50 rounded-2xl
-        min-h-[320px] md:min-h-[440px]
-        max-w-md w-full p-6
-      "
-      aria-hidden="true"
-    >
-      <!--
-        ╔══ SCREEN MOCK PLACEHOLDER ══════════════════════════════════════════╗
-        ║  Replace this SVG with a real product screenshot wrapped in:        ║
-        ║    <Image src={import('../assets/app-screen.png')} alt="App UI" />  ║
-        ╚═════════════════════════════════════════════════════════════════════╝
-      -->
-      <svg
-        viewBox="0 0 220 400"
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-full max-h-[380px] w-auto"
-        aria-label="Mobile app screen placeholder"
+<div class="w-full bg-[#FDFBF7]">
+  <section
+    id="value-prop"
+    aria-labelledby="value-prop-headline"
+    class="px-6 py-16 md:px-12 lg:px-20 max-w-screen-xl mx-auto"
+  >
+    <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+      <div
+        class="flex-1 flex items-center justify-center w-full"
+        aria-hidden="true"
       >
-        <!-- Phone outline -->
-        <rect x="10" y="10" width="200" height="380" rx="22"
-              fill="#F8FAFF" stroke="#2563EB" stroke-width="2"/>
-        <!-- Notch -->
-        <rect x="70" y="14" width="80" height="18" rx="9"
-              fill="#EFF6FF" stroke="#2563EB" stroke-width="1.5"/>
-        <!-- Screen content rows -->
-        <rect x="28" y="54"  width="164" height="14" rx="4" fill="#DBEAFE"/>
-        <rect x="28" y="76"  width="120" height="10" rx="4" fill="#BFDBFE"/>
-        <rect x="28" y="106" width="164" height="60" rx="6" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
-        <rect x="28" y="176" width="164" height="60" rx="6" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
-        <rect x="28" y="246" width="164" height="60" rx="6" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
-        <!-- Home indicator -->
-        <rect x="80" y="368" width="60" height="5" rx="3" fill="#BFDBFE"/>
-      </svg>
-    </div>
+        <div
+          class="relative w-full max-w-sm aspect-[4/5] bg-[#333D29]/5 rounded-tl-[5rem] rounded-br-[2rem] p-6 flex items-center justify-center border border-[#333D29]/10"
+        >
+          <div
+            class="absolute inset-4 border border-dashed border-[#333D29]/10 rounded-tl-[4rem] rounded-br-[1.5rem]"
+          >
+          </div>
 
-    <!-- ── Right: copy + checklist ───────────────────────────────────────── -->
-    <div class="flex-1 max-w-lg flex flex-col justify-center">
-      <h2
-        id="value-prop-headline"
-        class="text-2xl sm:text-3xl font-extrabold leading-snug text-blue-600 mb-4"
-      >
-        Long headline on two lines to turn your visitors into users and achieve more
-      </h2>
-
-      <p class="text-blue-600/75 text-sm leading-relaxed mb-6">
-        Separated they live in Bookmarks right at the coast of the famous
-        Semantics, large language ocean. Separated they live in Bookmarks
-        right at the coast.
-      </p>
-
-      <!-- Checkmark list -->
-      <ul class="space-y-3 text-blue-600 text-sm">
-        {checkItems.map((item) => (
-          <li class="flex items-center gap-3">
-            <!-- Circled checkmark — swap with your icon library if preferred -->
+          <div class="text-center z-10 px-6">
             <svg
-              xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              class="w-5 h-5 shrink-0 text-blue-600"
+              class="w-10 h-10 text-[#A36A52]/30 mx-auto mb-3"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              aria-hidden="true"
+              stroke-width="1"
             >
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="8,12 11,15 16,9" stroke-linecap="round" stroke-linejoin="round"/>
+              <path
+                d="M12 22V2M12 12c0-3.314 2.686-6 6-6M12 17c-3.314 0-6-2.686-6-6"
+                stroke-linecap="round"></path>
             </svg>
-            {item}
-          </li>
-        ))}
-      </ul>
-    </div>
+            <span
+              class="block text-xs tracking-[0.15em] uppercase font-serif text-[#333D29]/50"
+            >
+              Financial Architecture / Brand Context Visual
+            </span>
+          </div>
+        </div>
+      </div>
 
-  </div>
-</section>
+      <div class="flex-1 max-w-lg flex flex-col justify-center">
+        <h2
+          id="value-prop-headline"
+          class="text-3xl sm:text-4xl font-serif font-normal leading-[1.25] text-[#333D29] mb-5"
+        >
+          Designed for numbers, <span class="italic text-[#A36A52]"
+            >tailored for peace of mind</span
+          >.
+        </h2>
+
+        <p
+          class="text-[#333D29]/75 text-sm sm:text-base leading-relaxed mb-8 font-sans"
+        >
+          Your business financial system shouldn't require an extra degree to
+          interpret. We clean up historical disorganization, build streamlined
+          workflows, and give you back the processing hours needed to focus
+          completely on scaling your beautiful visions.
+        </p>
+
+        <ul class="space-y-4 text-[#333D29]/90 text-sm font-sans">
+          {
+            checkItems.map((item) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-0.5 shrink-0 text-[#A36A52]" aria-hidden="true">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <polyline
+                      points="20 6 9 17 4 12"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
