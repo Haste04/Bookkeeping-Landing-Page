@@ -3,26 +3,28 @@
  * src/components/NavBar.astro
  * ─────────────────────────────────────────────────────────────────────────────
  * Global site navigation — Seek First Books.
- * Optimized Desktop Scale + Responsive Mobile Drop Drawer.
+ * Mobile drawer: z-50, solid background, slides down cleanly below the header.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
 const navLinks = [
-  { label: "Features", href: "/#hero" },
-  { label: "How It Works", href: "/#features" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Reviews", href: "/#testimonials" },
-  { label: "FAQ", href: "/#faq" },
+  { label: "Features",     href: "/#hero"         },
+  { label: "How It Works", href: "/#features"     },
+  { label: "Pricing",      href: "/pricing"       },
+  { label: "Reviews",      href: "/#testimonials" },
+  { label: "FAQ",          href: "/#faq"          },
 ] as const;
 ---
 
 <header
-  class="sticky top-0 z-40 w-full bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#333D29]/5"
+  class="sticky top-0 z-50 w-full bg-[#FDFBF7]/95 backdrop-blur-md border-b border-[#333D29]/10"
 >
+  <!-- Desktop + mobile top bar -->
   <nav
     aria-label="Primary navigation"
-    class="flex items-center justify-between px-6 py-7 md:px-12 lg:px-20 max-w-screen-xl mx-auto transition-all duration-300"
+    class="flex items-center justify-between px-6 py-5 md:px-12 lg:px-20 max-w-screen-xl mx-auto"
   >
+    <!-- Logo -->
     <a
       href="/"
       aria-label="Seek First Books Home"
@@ -33,108 +35,118 @@ const navLinks = [
         alt="Seek First Books Logo"
         class="h-9 w-auto rounded-md object-cover transition-transform duration-300 group-hover:scale-105"
       />
-      <span
-        class="text-[#333D29] font-normal text-xl sm:text-2xl tracking-[0.15em] font-serif transition-colors duration-200 group-hover:text-[#A36A52]"
-      >
-        SEEK FIRST <span
-          class="italic text-[#A36A52] group-hover:text-[#333D29] transition-colors duration-200"
-          >BOOKS</span
-        >
+      <span class="text-[#333D29] font-normal text-xl sm:text-2xl tracking-[0.15em] font-serif transition-colors duration-200 group-hover:text-[#A36A52]">
+        SEEK FIRST <span class="italic text-[#A36A52] group-hover:text-[#333D29] transition-colors duration-200">BOOKS</span>
       </span>
     </a>
 
-    <ul
-      class="hidden md:flex items-center gap-8 lg:gap-10 text-sm font-medium tracking-widest uppercase text-[#333D29]/80 font-sans"
-    >
-      {
-        navLinks.map(({ label, href }) => (
-          <li>
-            <a
-              href={href}
-              class="hover:text-[#A36A52] transition-colors duration-200 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#A36A52] hover:after:w-full after:transition-all after:duration-300"
-            >
-              {label}
-            </a>
-          </li>
-        ))
-      }
+    <!-- Desktop nav links -->
+    <ul class="hidden md:flex items-center gap-8 lg:gap-10 text-sm font-medium tracking-widest uppercase text-[#333D29]/80 font-sans">
+      {navLinks.map(({ label, href }) => (
+        <li>
+          <a
+            href={href}
+            class="hover:text-[#A36A52] transition-colors duration-200 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#A36A52] hover:after:w-full after:transition-all after:duration-300"
+          >
+            {label}
+          </a>
+        </li>
+      ))}
     </ul>
 
+    <!-- Hamburger button (mobile only) -->
     <button
       id="mobile-menu-toggle"
-      class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none group z-50"
+      class="md:hidden flex flex-col justify-center gap-[5px] w-10 h-10 p-2 rounded-md hover:bg-[#333D29]/5 transition-colors focus:outline-none"
       aria-label="Toggle mobile menu"
       aria-expanded="false"
     >
-      <span
-        class="block w-6 h-0.5 bg-[#333D29] transition-transform duration-300 dynamic-line-1"
-      ></span>
-      <span
-        class="block w-6 h-0.5 bg-[#333D29] transition-opacity duration-300 dynamic-line-2"
-      ></span>
-      <span
-        class="block w-4 h-0.5 bg-[#333D29] transition-transform duration-300 self-end dynamic-line-3"
-      ></span>
+      <span class="block w-full h-0.5 bg-[#333D29] rounded-full transition-all duration-300 origin-center ham-line-1"></span>
+      <span class="block w-full h-0.5 bg-[#333D29] rounded-full transition-all duration-300 ham-line-2"></span>
+      <span class="block w-2/3 h-0.5 bg-[#333D29] rounded-full transition-all duration-300 ham-line-3"></span>
     </button>
   </nav>
 
+  <!-- Mobile drawer — sits directly below the nav bar, z-50 so it clears all page content -->
   <div
     id="mobile-menu-drawer"
-    class="hidden fixed inset-x-0 top-[89px] bottom-0 bg-[#FDFBF7] z-30 flex-col px-6 py-8 shadow-inner transition-all duration-300 md:hidden"
+    class="hidden md:hidden w-full bg-[#FDFBF7] border-t border-[#333D29]/10 shadow-lg"
   >
-    <ul
-      class="flex flex-col gap-6 text-base font-medium tracking-wide text-[#333D29]/90 font-sans"
-    >
-      {
-        navLinks.map(({ label, href }) => (
-          <li>
-            <a
-              href={href}
-              class="mobile-nav-link block py-2 border-b border-[#333D29]/5 hover:text-[#A36A52] transition-colors duration-200"
-            >
-              {label}
-            </a>
-          </li>
-        ))
-      }
+    <ul class="flex flex-col px-6 py-4">
+      {navLinks.map(({ label, href }) => (
+        <li>
+          <a
+            href={href}
+            class="mobile-nav-link flex items-center justify-between py-4 text-base font-medium text-[#333D29] border-b border-[#333D29]/8 hover:text-[#A36A52] hover:pl-1 transition-all duration-200 last:border-b-0"
+          >
+            {label}
+            <!-- Subtle right chevron -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                 class="w-4 h-4 text-[#333D29]/30" fill="none"
+                 stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </a>
+        </li>
+      ))}
     </ul>
+
+    <!-- Optional CTA inside drawer -->
+    <div class="px-6 pb-6 pt-2">
+      <a
+        href="/#cta"
+        class="mobile-nav-link block w-full text-center bg-[#A36A52] text-[#FDFBF7] text-sm font-medium tracking-wide py-3 rounded-md hover:bg-[#8f5a44] transition-colors duration-200"
+      >
+        Book a Consultation
+      </a>
+    </div>
   </div>
 </header>
 
 <script>
   function setupMobileMenu() {
-    const toggleBtn = document.getElementById("mobile-menu-toggle");
-    const drawer = document.getElementById("mobile-menu-drawer");
-    const links = document.querySelectorAll(".mobile-nav-link");
+    const toggleBtn = document.getElementById("mobile-menu-toggle") as HTMLButtonElement;
+    const drawer    = document.getElementById("mobile-menu-drawer")  as HTMLDivElement;
+    const links     = document.querySelectorAll(".mobile-nav-link");
 
     if (!toggleBtn || !drawer) return;
 
-    function toggleMenu() {
-      const isExpanded = toggleBtn?.getAttribute("aria-expanded") === "true";
+    function openMenu() {
+      drawer.classList.remove("hidden");
+      toggleBtn.setAttribute("aria-expanded", "true");
+      document.body.classList.add("overflow-hidden");
 
-      if (isExpanded) {
-        drawer?.classList.add("hidden");
-        drawer?.classList.remove("flex");
-        toggleBtn?.setAttribute("aria-expanded", "false");
-        document.body.classList.remove("overflow-hidden");
-      } else {
-        drawer?.classList.remove("hidden");
-        drawer?.classList.add("flex");
-        toggleBtn?.setAttribute("aria-expanded", "true");
-        document.body.classList.add("overflow-hidden");
-      }
+      // Animate hamburger → X
+      const l1 = toggleBtn.querySelector(".ham-line-1") as HTMLElement;
+      const l2 = toggleBtn.querySelector(".ham-line-2") as HTMLElement;
+      const l3 = toggleBtn.querySelector(".ham-line-3") as HTMLElement;
+      if (l1) l1.style.transform = "translateY(7px) rotate(45deg)";
+      if (l2) l2.style.opacity   = "0";
+      if (l3) { l3.style.width = "100%"; l3.style.transform = "translateY(-7px) rotate(-45deg)"; }
+    }
+
+    function closeMenu() {
+      drawer.classList.add("hidden");
+      toggleBtn.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("overflow-hidden");
+
+      // Reset hamburger lines
+      const l1 = toggleBtn.querySelector(".ham-line-1") as HTMLElement;
+      const l2 = toggleBtn.querySelector(".ham-line-2") as HTMLElement;
+      const l3 = toggleBtn.querySelector(".ham-line-3") as HTMLElement;
+      if (l1) l1.style.transform = "";
+      if (l2) l2.style.opacity   = "1";
+      if (l3) { l3.style.width = ""; l3.style.transform = ""; }
+    }
+
+    function toggleMenu() {
+      toggleBtn.getAttribute("aria-expanded") === "true" ? closeMenu() : openMenu();
     }
 
     toggleBtn.addEventListener("click", toggleMenu);
 
-    links.forEach((link) => {
-      link.addEventListener("click", () => {
-        drawer?.classList.add("hidden");
-        drawer?.classList.remove("flex");
-        toggleBtn?.setAttribute("aria-expanded", "false");
-        document.body.classList.remove("overflow-hidden");
-      });
-    });
+    // Close drawer when any nav link is tapped
+    links.forEach((link) => link.addEventListener("click", closeMenu));
   }
 
   setupMobileMenu();
