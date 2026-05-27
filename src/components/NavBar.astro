@@ -2,61 +2,141 @@
 /**
  * src/components/NavBar.astro
  * ─────────────────────────────────────────────────────────────────────────────
- * Global site navigation — Boutique Earth Theme.
- * Sticky positioning is handled by the <header> in index.astro.
+ * Global site navigation — Seek First Books.
+ * Optimized Desktop Scale + Responsive Mobile Drop Drawer.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
 const navLinks = [
-  { label: "Features", href: "/#features" },
-  { label: "How It Works", href: "/#value-prop" },
+  { label: "Features", href: "/#hero" },
+  { label: "How It Works", href: "/#features" },
   { label: "Pricing", href: "/pricing" },
   { label: "Reviews", href: "/#testimonials" },
   { label: "FAQ", href: "/#faq" },
-  { label: "Contact", href: "/#footer" },
 ] as const;
 ---
 
-<nav
-  aria-label="Primary navigation"
-  class="flex items-center justify-between px-6 py-6 md:px-12 lg:px-20 border-b border-[#333D29]/5 bg-[#FDFBF7]"
+<header
+  class="sticky top-0 z-40 w-full bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#333D29]/5"
 >
-  <a
-    href="/"
-    aria-label="Queenie's Bookkeeping Home"
-    class="flex items-center gap-3 shrink-0"
+  <nav
+    aria-label="Primary navigation"
+    class="flex items-center justify-between px-6 py-7 md:px-12 lg:px-20 max-w-screen-xl mx-auto transition-all duration-300"
   >
-    <span
-      class="text-[#333D29] font-medium text-lg sm:text-xl tracking-[0.12em] font-serif"
+    <a
+      href="/"
+      aria-label="Seek First Books Home"
+      class="flex items-center gap-3 shrink-0 group focus:outline-none"
     >
-      SEEK FIRST BOOKS
-    </span>
-  </a>
+      <img
+        src="/Seek First Logo.png"
+        alt="Seek First Books Logo"
+        class="h-9 w-auto rounded-md object-cover transition-transform duration-300 group-hover:scale-105"
+      />
+      <span
+        class="text-[#333D29] font-normal text-xl sm:text-2xl tracking-[0.15em] font-serif transition-colors duration-200 group-hover:text-[#A36A52]"
+      >
+        SEEK FIRST <span
+          class="italic text-[#A36A52] group-hover:text-[#333D29] transition-colors duration-200"
+          >BOOKS</span
+        >
+      </span>
+    </a>
 
-  <ul
-    class="hidden md:flex items-center gap-6 lg:gap-8 text-xs sm:text-sm font-medium tracking-wide text-[#333D29]/90"
+    <ul
+      class="hidden md:flex items-center gap-8 lg:gap-10 text-sm font-medium tracking-widest uppercase text-[#333D29]/80 font-sans"
+    >
+      {
+        navLinks.map(({ label, href }) => (
+          <li>
+            <a
+              href={href}
+              class="hover:text-[#A36A52] transition-colors duration-200 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#A36A52] hover:after:w-full after:transition-all after:duration-300"
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <button
+      id="mobile-menu-toggle"
+      class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none group z-50"
+      aria-label="Toggle mobile menu"
+      aria-expanded="false"
+    >
+      <span
+        class="block w-6 h-0.5 bg-[#333D29] transition-transform duration-300 dynamic-line-1"
+      ></span>
+      <span
+        class="block w-6 h-0.5 bg-[#333D29] transition-opacity duration-300 dynamic-line-2"
+      ></span>
+      <span
+        class="block w-4 h-0.5 bg-[#333D29] transition-transform duration-300 self-end dynamic-line-3"
+      ></span>
+    </button>
+  </nav>
+
+  <div
+    id="mobile-menu-drawer"
+    class="hidden fixed inset-x-0 top-[89px] bottom-0 bg-[#FDFBF7] z-30 flex-col px-6 py-8 shadow-inner transition-all duration-300 md:hidden"
   >
-    {
-      navLinks.map(({ label, href }) => (
-        <li>
-          <a
-            href={href}
-            class="hover:text-[#A36A52] transition-colors duration-200"
-          >
-            {label}
-          </a>
-        </li>
-      ))
+    <ul
+      class="flex flex-col gap-6 text-base font-medium tracking-wide text-[#333D29]/90 font-sans"
+    >
+      {
+        navLinks.map(({ label, href }) => (
+          <li>
+            <a
+              href={href}
+              class="mobile-nav-link block py-2 border-b border-[#333D29]/5 hover:text-[#A36A52] transition-colors duration-200"
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</header>
+
+<script>
+  function setupMobileMenu() {
+    const toggleBtn = document.getElementById("mobile-menu-toggle");
+    const drawer = document.getElementById("mobile-menu-drawer");
+    const links = document.querySelectorAll(".mobile-nav-link");
+
+    if (!toggleBtn || !drawer) return;
+
+    function toggleMenu() {
+      const isExpanded = toggleBtn?.getAttribute("aria-expanded") === "true";
+
+      if (isExpanded) {
+        drawer?.classList.add("hidden");
+        drawer?.classList.remove("flex");
+        toggleBtn?.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("overflow-hidden");
+      } else {
+        drawer?.classList.remove("hidden");
+        drawer?.classList.add("flex");
+        toggleBtn?.setAttribute("aria-expanded", "true");
+        document.body.classList.add("overflow-hidden");
+      }
     }
-  </ul>
 
-  <button
-    class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none"
-    aria-label="Open mobile menu"
-    aria-expanded="false"
-  >
-    <span class="block w-6 h-0.5 bg-[#333D29]"></span>
-    <span class="block w-6 h-0.5 bg-[#333D29]"></span>
-    <span class="block w-4 h-0.5 bg-[#333D29]"></span>
-  </button>
-</nav>
+    toggleBtn.addEventListener("click", toggleMenu);
+
+    links.forEach((link) => {
+      link.addEventListener("click", () => {
+        drawer?.classList.add("hidden");
+        drawer?.classList.remove("flex");
+        toggleBtn?.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("overflow-hidden");
+      });
+    });
+  }
+
+  setupMobileMenu();
+  document.addEventListener("astro:after-swap", setupMobileMenu);
+</script>

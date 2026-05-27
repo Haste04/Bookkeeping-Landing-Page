@@ -3,39 +3,64 @@
  * src/components/Features.astro
  * ─────────────────────────────────────────────────────────────────────────────
  * Section 2 — Features & Benefits.
- * Layout A (top):    3-column responsive value-add card grid.
- * Layout B (bottom): 2-column split — holistic lifestyle benefit messaging.
- * Full-width background wrapper applied to prevent layout cropping on wide screens.
+ * Displays custom premium accounting service cards and an interactive, structured
+ * horizontal step-by-step roadmap outlining the client onboarding pathway.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
 const features = [
   {
-    title: "Tailored Financial Tracking",
+    title: "Monthly Bookkeeping",
     description:
-      "No complex software formulas or confusing structures. We build clean, intuitive bookkeeping systems customized explicitly for your daily workflow.",
+      "Comprehensive monthly accounting, transaction categorization, bank reconciliations, and accurate financial statements delivered with care.",
     iconShape: "bookOpen",
   },
   {
-    title: "Tax Season Readiness",
+    title: "Financial Reporting",
     description:
-      "Avoid the late-night panic. Every transaction is meticulously categorized and preserved, ensuring you have a seamless, stress-free tax filing experience.",
-    iconShape: "calendar",
+      "Clear, actionable financial reports that give you insights into your business performance and support informed decision-making.",
+    iconShape: "trendingUp",
   },
   {
-    title: "Clarity Over Confusion",
+    title: "QuickBooks / Xero Management",
     description:
-      "Receive transparent monthly financial summaries that help you understand exactly where your revenue goes, allowing you to scale with complete confidence.",
-    iconShape: "sparkles",
+      "Expert setup, optimization, and ongoing management of your QuickBooks account to ensure seamless financial tracking.",
+    iconShape: "monitorCheck",
+  },
+  {
+    title: "Systems Automation",
+    description:
+      "Streamlined workflow automations and integrations that save time, reduce errors, and let you focus on growing your business.",
+    iconShape: "settingsGear",
   },
 ] as const;
 
-const benefits = [
-  "Reclaim hours of personal time every single week",
-  "Eliminate the underlying guilt of unorganized receipts",
-  "Understand your true profitability with zero guesswork",
-  "Gain an intentional financial partner who truly understands your business lifestyle",
-];
+const steps = [
+  {
+    num: "1",
+    title: "Free Quick Connect",
+    description:
+      "A brief introductory call to understand your business needs and determine if we're the right fit for your financial goals.",
+  },
+  {
+    num: "2",
+    title: "Onboarding",
+    description:
+      "We gather your financial documents, access credentials, and learn your unique workflows to create a tailored approach.",
+  },
+  {
+    num: "3",
+    title: "Setup & Repair",
+    description:
+      "We organize your books, fix past issues, and implement efficient systems designed for your business.",
+  },
+  {
+    num: "4",
+    title: "Routine & Flourish",
+    description:
+      "Ongoing monthly support keeps your finances clear and organized so you can focus on growth.",
+  },
+] as const;
 ---
 
 <div class="w-full bg-[#FDFBF7]">
@@ -45,149 +70,133 @@ const benefits = [
     class="px-6 py-16 md:px-12 lg:px-20 max-w-screen-xl mx-auto"
   >
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12 mb-24"
+      class="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-14 mb-24 max-w-5xl mx-auto"
     >
       {
         features.map(({ title, description, iconShape }) => (
-          <article class="flex flex-col gap-4 group">
-            <div class="flex items-center gap-4">
-              <div
-                class="w-12 h-12 flex items-center justify-center shrink-0 
+          <article class="flex items-start gap-5 group">
+            <div
+              class="w-14 h-14 flex items-center justify-center shrink-0 
                      bg-[#333D29]/5 text-[#A36A52] rounded-tl-xl rounded-br-xl 
                      group-hover:bg-[#A36A52]/10 transition-colors duration-300"
-                aria-hidden="true"
-              >
-                {iconShape === "bookOpen" && (
-                  <svg
-                    viewBox="0 0 24 24"
-                    class="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.75"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-                  </svg>
-                )}
-                {iconShape === "calendar" && (
-                  <svg
-                    viewBox="0 0 24 24"
-                    class="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.75"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                    <line x1="16" y1="2" x2="16" y2="6" />
-                    <line x1="8" y1="2" x2="8" y2="6" />
-                    <line x1="3" y1="10" x2="18" y2="10" />
-                  </svg>
-                )}
-                {iconShape === "sparkles" && (
-                  <svg
-                    viewBox="0 0 24 24"
-                    class="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.75"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707.707M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z" />
-                  </svg>
-                )}
-              </div>
-
-              <h3 class="font-serif font-medium text-[#333D29] text-lg tracking-wide">
-                {title}
-              </h3>
+              aria-hidden="true"
+            >
+              {iconShape === "bookOpen" && (
+                <svg
+                  viewBox="0 0 24 24"
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                </svg>
+              )}
+              {iconShape === "trendingUp" && (
+                <svg
+                  viewBox="0 0 24 24"
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                  <polyline points="17 6 23 6 23 12" />
+                </svg>
+              )}
+              {iconShape === "monitorCheck" && (
+                <svg
+                  viewBox="0 0 24 24"
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                  <polyline points="9 10 11 12 15 8" />
+                </svg>
+              )}
+              {iconShape === "settingsGear" && (
+                <svg
+                  viewBox="0 0 24 24"
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                </svg>
+              )}
             </div>
 
-            <p class="text-[#333D29]/75 text-sm leading-relaxed font-sans">
-              {description}
-            </p>
+            <div class="flex flex-col gap-1.5">
+              <h3 class="font-serif font-medium text-[#333D29] text-xl tracking-wide transition-colors duration-200 group-hover:text-[#A36A52]">
+                {title}
+              </h3>
+              <p class="text-[#333D29]/75 text-sm leading-relaxed font-sans">
+                {description}
+              </p>
+            </div>
           </article>
         ))
       }
     </div>
 
-    <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
-      <div class="flex-1 max-w-lg">
+    <div class="w-full pt-8 border-t border-[#333D29]/10">
+      <div
+        class="max-w-xl md:max-w-none mx-auto mb-16 text-center md:text-left"
+      >
         <h2
           id="features-headline"
-          class="text-3xl sm:text-4xl font-serif font-normal leading-[1.25] text-[#333D29] mb-5"
+          class="text-3xl sm:text-4xl font-serif font-normal leading-[1.25] text-[#333D29]"
         >
-          You deserve a bookkeeper <span class="italic text-[#A36A52]"
-            >who gets your life</span
-          >, not just your books.
+          How we <span class="italic text-[#A36A52]">Work</span>
         </h2>
-
-        <p
-          class="text-[#333D29]/75 text-sm sm:text-base leading-relaxed mb-8 font-sans"
-        >
-          When your business financial records are organized with care, you
-          don't just gain a clear view of your revenue channels—you protect your
-          creative energy and make room for the life you love.
-        </p>
-
-        <ul class="space-y-3.5 text-[#333D29]/90 text-sm font-sans">
-          {
-            benefits.map((item) => (
-              <li class="flex items-start gap-3">
-                <span class="mt-0.5 shrink-0 text-[#A36A52]" aria-hidden="true">
-                  <svg
-                    viewBox="0 0 24 24"
-                    class="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                </span>
-                {item}
-              </li>
-            ))
-          }
-        </ul>
       </div>
 
-      <div
-        class="flex-1 flex items-center justify-center w-full"
-        aria-hidden="true"
-      >
+      <div class="relative w-full max-w-5xl mx-auto mt-12">
         <div
-          class="relative w-full max-w-sm aspect-[1.1] bg-[#333D29]/5 rounded-br-[5rem] rounded-tl-[2rem] p-6 flex items-center justify-center border border-[#333D29]/10"
+          class="hidden md:block absolute top-[26px] left-4 right-12 h-[2px] bg-[#333D29]/20"
+          aria-hidden="true"
         >
           <div
-            class="absolute inset-4 border border-dashed border-[#333D29]/10 rounded-br-[4rem] rounded-tl-[1.5rem]"
+            class="absolute -right-2 -top-[4px] w-0 h-0 border-y-[5px] border-y-transparent border-l-[8px] border-l-[#333D29]/30"
           >
           </div>
+        </div>
 
-          <div class="text-center z-10 px-6">
-            <svg
-              viewBox="0 0 24 24"
-              class="w-10 h-10 text-[#A36A52]/30 mx-auto mb-3"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1"
-            >
-              <path
-                d="M12 22V2M12 12c0-3.314 2.686-6 6-6M12 17c-3.314 0-6-2.686-6-6"
-                stroke-linecap="round"></path>
-            </svg>
-            <span
-              class="block text-xs tracking-[0.15em] uppercase font-serif text-[#333D29]/50"
-            >
-              Workspace Vignette / Brand Detail Image
-            </span>
-          </div>
+        <div
+          class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-6 relative z-10"
+        >
+          {
+            steps.map(({ num, title, description }) => (
+              <div class="flex flex-col items-center md:items-start text-center md:text-left group">
+                <div class="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#EAE5DA] border border-[#333D29]/10 text-[#333D29] font-serif text-lg mb-5 shadow-sm group-hover:bg-[#A36A52] group-hover:text-[#FDFBF7] transition-colors duration-300">
+                  {num}
+                  <div class="absolute -top-1.5 w-2 h-2 rounded-full bg-[#333D29]/40 hidden md:block" />
+                </div>
+
+                <h3 class="font-serif font-medium text-[#333D29] text-lg tracking-wide mb-2 group-hover:text-[#A36A52] transition-colors duration-200">
+                  {title}
+                </h3>
+                <p class="text-[#333D29]/75 text-xs sm:text-sm leading-relaxed font-sans max-w-xs">
+                  {description}
+                </p>
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>

@@ -15,11 +15,23 @@ const checkItems = [
 ];
 ---
 
-<div class="w-full bg-[#FDFBF7]">
+<div class="w-full bg-[#FDFBF7] relative overflow-hidden">
+  <div class="absolute inset-0 w-full h-full z-0 pointer-events-none">
+    <img
+      src="/ValueProp/ValueProp Background.png"
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover"
+      role="presentation"
+      decoding="async"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-[#FDFBF7]/85 backdrop-blur-[2px]"></div>
+  </div>
+
   <section
     id="value-prop"
     aria-labelledby="value-prop-headline"
-    class="px-6 py-16 md:px-12 lg:px-20 max-w-screen-xl mx-auto"
+    class="px-6 py-16 md:px-12 lg:px-20 max-w-screen-xl mx-auto relative z-10"
   >
     <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
       <div
@@ -27,31 +39,14 @@ const checkItems = [
         aria-hidden="true"
       >
         <div
-          class="relative w-full max-w-sm aspect-[4/5] bg-[#333D29]/5 rounded-tl-[5rem] rounded-br-[2rem] p-6 flex items-center justify-center border border-[#333D29]/10"
+          class="relative w-full max-w-sm aspect-[4/5] rounded-tl-[5rem] rounded-br-[2rem] overflow-hidden border border-[#333D29]/10 shadow-sm"
         >
-          <div
-            class="absolute inset-4 border border-dashed border-[#333D29]/10 rounded-tl-[4rem] rounded-br-[1.5rem]"
-          >
-          </div>
-
-          <div class="text-center z-10 px-6">
-            <svg
-              viewBox="0 0 24 24"
-              class="w-10 h-10 text-[#A36A52]/30 mx-auto mb-3"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1"
-            >
-              <path
-                d="M12 22V2M12 12c0-3.314 2.686-6 6-6M12 17c-3.314 0-6-2.686-6-6"
-                stroke-linecap="round"></path>
-            </svg>
-            <span
-              class="block text-xs tracking-[0.15em] uppercase font-serif text-[#333D29]/50"
-            >
-              Financial Architecture / Brand Context Visual
-            </span>
-          </div>
+          <img
+            src="/ValueProp/ValueProp 1.jpg"
+            alt="Seek First Books detailed visual workspace asset presentation"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+          />
         </div>
       </div>
 
@@ -60,25 +55,27 @@ const checkItems = [
           id="value-prop-headline"
           class="text-3xl sm:text-4xl font-serif font-normal leading-[1.25] text-[#333D29] mb-5"
         >
-          Designed for numbers, <span class="italic text-[#A36A52]"
-            >tailored for peace of mind</span
-          >.
+          SPECIALIZED PROJECT <span class="italic text-[#A36A52]">SERVICES</span
+          >
         </h2>
 
         <p
           class="text-[#333D29]/75 text-sm sm:text-base leading-relaxed mb-8 font-sans"
         >
-          Your business financial system shouldn't require an extra degree to
-          interpret. We clean up historical disorganization, build streamlined
-          workflows, and give you back the processing hours needed to focus
-          completely on scaling your beautiful visions.
+          Beyond our monthly packages, we offer specialized project services
+          designed to establish, restore, or enhance your financial systems.
+          Each service is tailored to your unique business needs with
+          transparent pricing and dedicated expertise.
         </p>
 
         <ul class="space-y-4 text-[#333D29]/90 text-sm font-sans">
           {
             checkItems.map((item) => (
-              <li class="flex items-start gap-3">
-                <span class="mt-0.5 shrink-0 text-[#A36A52]" aria-hidden="true">
+              <li class="flex items-start gap-3 group">
+                <span
+                  class="mt-0.5 shrink-0 text-[#A36A52] transform group-hover:scale-110 transition-transform duration-200"
+                  aria-hidden="true"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -94,7 +91,9 @@ const checkItems = [
                     />
                   </svg>
                 </span>
-                {item}
+                <span class="transition-colors duration-200 group-hover:text-[#333D29]">
+                  {item}
+                </span>
               </li>
             ))
           }

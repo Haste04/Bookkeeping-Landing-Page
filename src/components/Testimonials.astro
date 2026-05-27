@@ -2,10 +2,10 @@
 /**
  * src/components/Testimonials.astro
  * ─────────────────────────────────────────────────────────────────────────────
- * Section 4 — Social Proof & Testimonials.
- * Spotlight mode: active card is fully sharp; all others are blurred + dimmed.
- * Transitions are CSS-driven (filter + opacity + scale) for smoothness.
- * Auto-advances every 30 s; arrows reset the timer on interaction.
+ * Section 4 — Social Proof & Testimonials Carousel.
+ * Layout/placement: same carousel structure as before.
+ * Theme: dark olive green background matching the CTA section palette.
+ * Spotlight mode: active card sharp, inactive cards blurred + dimmed.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
@@ -47,62 +47,49 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-const showCarouselControls = testimonials.length >= 4;
+const showCarouselControls = testimonials.length > 1;
 ---
 
-<div class="w-full bg-[#FDFBF7] overflow-hidden">
+<!-- Dark olive green background to match the overall site palette -->
+<div class="w-full bg-[#333D29] overflow-hidden">
   <section
     id="testimonials"
     aria-labelledby="testimonials-headline"
     class="px-6 py-16 md:px-12 lg:px-20 max-w-screen-xl mx-auto relative"
   >
-    <!-- Header row -->
-    <div
-      class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12"
-    >
-      <div class="max-w-xl">
+
+    <!-- Header row: headline left, arrow controls right -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+      <div class="max-w-3xl lg:max-w-none">
         <h2
           id="testimonials-headline"
-          class="text-3xl sm:text-4xl font-serif font-normal leading-[1.25] text-[#333D29]"
+          class="text-3xl sm:text-4xl font-serif font-normal leading-[1.25] text-[#FDFBF7]"
         >
-          Stories from women <span class="italic text-[#A36A52]"
-            >who reclaimed their time</span
-          >
+          Stories from people{" "}
+          <span class="italic text-[#A36A52]">who reclaimed their time</span>
         </h2>
       </div>
 
       {
         showCarouselControls && (
-          <div class="flex items-center gap-3 select-none">
+          <div class="flex items-center gap-3 select-none shrink-0">
             <button
               id="prev-testimonial"
-              class="w-10 h-10 rounded-full border border-[#333D29]/10 flex items-center justify-center text-[#333D29] hover:bg-[#A36A52] hover:text-[#FDFBF7] hover:border-[#A36A52] transition-colors duration-300 focus:outline-none"
+              class="w-10 h-10 rounded-full border border-[#FDFBF7]/20 flex items-center justify-center text-[#FDFBF7] hover:bg-[#A36A52] hover:border-[#A36A52] transition-colors duration-300 focus:outline-none"
               aria-label="Previous testimonial"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                class="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                   class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5">
                 <polyline points="15 18 9 12 15 6" />
               </svg>
             </button>
             <button
               id="next-testimonial"
-              class="w-10 h-10 rounded-full border border-[#333D29]/10 flex items-center justify-center text-[#333D29] hover:bg-[#A36A52] hover:text-[#FDFBF7] hover:border-[#A36A52] transition-colors duration-300 focus:outline-none"
+              class="w-10 h-10 rounded-full border border-[#FDFBF7]/20 flex items-center justify-center text-[#FDFBF7] hover:bg-[#A36A52] hover:border-[#A36A52] transition-colors duration-300 focus:outline-none"
               aria-label="Next testimonial"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                class="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                   class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5">
                 <polyline points="9 18 15 12 9 6" />
               </svg>
             </button>
@@ -115,57 +102,55 @@ const showCarouselControls = testimonials.length >= 4;
     <div class="w-full overflow-hidden" id="slider-viewport">
       <div
         id="testimonials-track"
-        class="grid grid-flow-col auto-cols-[100%] sm:auto-cols-[calc(50%-16px)] lg:auto-cols-[calc(33.333%-21.333px)] gap-6 lg:gap-8 transition-transform duration-500 ease-out will-change-transform"
+        class="grid grid-flow-col auto-cols-[100%] sm:auto-cols-[calc(50%-12px)] lg:auto-cols-[calc(33.333%-16px)] gap-6 lg:gap-8 transition-transform duration-500 ease-out will-change-transform"
         data-count={testimonials.length}
       >
         {
           testimonials.map(({ quote, name, description, avatarSrc }, index) => (
             <article
               data-card-index={index}
+              class="flex flex-col justify-between rounded-tl-2xl rounded-br-2xl p-8 h-full transition-all duration-500"
               style={
-                /* First card starts spotlit; all others start blurred.
-                   JS takes over after mount — this ensures correct
-                   initial state even before the script runs. */
+                /* Card 0 starts spotlit; others start blurred.
+                   Uses a slightly lighter olive tint for the card surface
+                   so it reads as a lifted layer against the dark background. */
                 index === 0
-                  ? "filter:none; opacity:1; transform:scale(1); transition: filter 0.5s ease, opacity 0.5s ease, transform 0.5s ease;"
-                  : "filter:blur(3px); opacity:0.4; transform:scale(0.97); transition: filter 0.5s ease, opacity 0.5s ease, transform 0.5s ease;"
+                  ? "background: rgba(253,251,247,0.07); border: 1px solid rgba(253,251,247,0.12); filter: none; opacity: 1; transform: scale(1);"
+                  : "background: rgba(253,251,247,0.07); border: 1px solid rgba(253,251,247,0.12); filter: blur(2px); opacity: 0.35; transform: scale(0.96);"
               }
-              class="
-                flex flex-col justify-between
-                border border-[#333D29]/10 rounded-tl-2xl rounded-br-2xl p-8 bg-white/60 backdrop-blur-sm
-                hover:border-[#A36A52]/20 h-full
-              "
             >
+              <!-- Quote mark -->
               <div>
-                <span class="block text-4xl font-serif text-[#A36A52]/30 leading-none mb-1 select-none">
+                <span class="block text-4xl font-serif text-[#A36A52]/50 leading-none mb-1 select-none">
                   "
                 </span>
-                <blockquote class="text-[#333D29]/80 text-sm leading-relaxed font-sans mb-8">
+                <blockquote class="text-[#FDFBF7]/80 text-sm leading-relaxed font-sans mb-8">
                   {quote}
                 </blockquote>
               </div>
 
-              <footer class="flex items-center gap-4 mt-auto pt-4 border-t border-[#333D29]/5">
+              <!-- Reviewer footer -->
+              <footer class="flex items-center gap-4 mt-auto pt-4 border-t border-[#FDFBF7]/10">
                 {avatarSrc ? (
                   <img
                     src={avatarSrc}
                     alt={`${name} profile`}
-                    class="w-11 h-11 rounded-full object-cover shrink-0 border border-[#333D29]/10"
+                    class="w-11 h-11 rounded-full object-cover shrink-0 border border-[#FDFBF7]/20"
                     loading="lazy"
                   />
                 ) : (
                   <div
-                    class="w-11 h-11 rounded-full bg-[#333D29]/5 text-[#A36A52] flex items-center justify-center shrink-0 font-serif text-sm font-medium"
+                    class="w-11 h-11 rounded-full bg-[#FDFBF7]/10 text-[#A36A52] flex items-center justify-center shrink-0 font-serif text-sm font-medium"
                     aria-hidden="true"
                   >
                     {name.charAt(0)}
                   </div>
                 )}
                 <div>
-                  <p class="text-[#333D29] font-medium text-sm tracking-wide font-sans">
+                  <p class="text-[#FDFBF7] font-medium text-sm tracking-wide font-sans">
                     {name}
                   </p>
-                  <p class="text-[#333D29]/60 text-xs italic font-serif mt-0.5">
+                  <p class="text-[#FDFBF7]/50 text-xs italic font-serif mt-0.5">
                     {description}
                   </p>
                 </div>
@@ -181,142 +166,116 @@ const showCarouselControls = testimonials.length >= 4;
       id="pagination-dots"
       class="flex justify-center gap-2.5 mt-10"
       aria-label="Testimonial pagination"
-      role="tablist"
     >
       {
         testimonials.map((_, index) => (
-          <span
-            class={`w-2 h-2 rounded-full transition-colors duration-300 inline-block ${index === 0 ? "bg-[#A36A52]" : "bg-[#333D29]/10"}`}
+          <button
+            class="h-2.5 rounded-full transition-all duration-300 focus:outline-none bg-[#FDFBF7]/20"
+            style={index === 0 ? "width:24px; background-color:#A36A52;" : "width:10px;"}
             data-index={index}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))
       }
     </div>
+
   </section>
 </div>
 
 <script>
   function setupTestimonialCarousel() {
-    const track = document.getElementById(
-      "testimonials-track",
-    ) as HTMLDivElement;
-    const prevBtn = document.getElementById(
-      "prev-testimonial",
-    ) as HTMLButtonElement;
-    const nextBtn = document.getElementById(
-      "next-testimonial",
-    ) as HTMLButtonElement;
-    const dots = document.querySelectorAll("#pagination-dots span");
-    const cards = document.querySelectorAll<HTMLElement>("[data-card-index]");
+    const track   = document.getElementById("testimonials-track") as HTMLDivElement;
+    const prevBtn = document.getElementById("prev-testimonial")   as HTMLButtonElement;
+    const nextBtn = document.getElementById("next-testimonial")   as HTMLButtonElement;
+    const dots    = document.querySelectorAll<HTMLButtonElement>("#pagination-dots button");
+    const cards   = document.querySelectorAll<HTMLElement>("[data-card-index]");
 
-    if (!track) return;
+    if (!track || cards.length === 0) return;
 
-    const totalItems = parseInt(track.dataset.count || "0", 10);
-    if (totalItems < 4) return;
-
-    let currentIndex = 0;
+    const totalItems = cards.length;
+    let currentIndex              = 0;
     let autoplayTimer: number | undefined;
 
-    // ── Responsive visible-card count ──────────────────────────────────────
+    // ── Responsive column count ─────────────────────────────────────────────
     function getVisibleCount(): number {
       if (window.innerWidth >= 1024) return 3;
-      if (window.innerWidth >= 640) return 2;
+      if (window.innerWidth >= 640)  return 2;
       return 1;
     }
 
-    // ── Spotlight: sharp on active card, blurred on all others ─────────────
-    function updateSpotlight() {
-      cards.forEach((card) => {
-        const idx = parseInt(card.dataset.cardIndex || "0", 10);
-        if (idx === currentIndex) {
-          // Active card — fully visible
-          card.style.filter = "none";
-          card.style.opacity = "1";
-          card.style.transform = "scale(1)";
-        } else {
-          // Inactive cards — blurred and dimmed
-          card.style.filter = "blur(3px)";
-          card.style.opacity = "0.4";
-          card.style.transform = "scale(0.97)";
-        }
-      });
-    }
+    // ── Master update: position + spotlight + dots ──────────────────────────
+    function updateCarousel() {
+      // Wrap index
+      if (currentIndex >= totalItems) currentIndex = 0;
+      if (currentIndex < 0)           currentIndex = totalItems - 1;
 
-    // ── Slider position + dots ──────────────────────────────────────────────
-    function updateSliderPosition() {
       const visible = getVisibleCount();
 
-      // Spotlight index can reach every card (0 → totalItems-1).
-      const maxSpotlight = totalItems - 1;
-
-      // Clamp spotlight index to valid range
-      if (currentIndex > maxSpotlight) currentIndex = 0;
-      if (currentIndex < 0) currentIndex = maxSpotlight;
-
-      // Translation is clamped separately so we never show empty space.
-      // e.g. 4 cards / 3 visible → max safe translation step = 1,
-      // so cards 2 & 3 are spotlit while the viewport stays at cards 1-3.
-      const maxTranslation = totalItems - visible;
+      // Translation — clamped so we never show empty space on the right
+      const maxTranslation  = totalItems - visible;
       const translationStep = Math.min(currentIndex, maxTranslation);
-      const offsetPercent = translationStep * (100 / visible);
+      const offsetPercent   = translationStep * (100 / visible);
       track.style.transform = `translateX(-${offsetPercent}%)`;
 
-      // Sync pagination dots
-      dots.forEach((dot, idx) => {
-        const el = dot as HTMLElement;
+      // Spotlight — active card sharp, all others blurred + dimmed
+      cards.forEach((card, idx) => {
         if (idx === currentIndex) {
-          el.classList.remove("bg-[#333D29]/10");
-          el.classList.add("bg-[#A36A52]");
+          card.style.filter    = "none";
+          card.style.opacity   = "1";
+          card.style.transform = "scale(1)";
         } else {
-          el.classList.remove("bg-[#A36A52]");
-          el.classList.add("bg-[#333D29]/10");
+          card.style.filter    = "blur(2px)";
+          card.style.opacity   = "0.35";
+          card.style.transform = "scale(0.96)";
         }
       });
 
-      // Always update spotlight alongside position
-      updateSpotlight();
+      // Pagination dots — active dot stretches into a capsule
+      dots.forEach((dot, idx) => {
+        if (idx === currentIndex) {
+          dot.style.backgroundColor = "#A36A52";
+          dot.style.width           = "24px";
+        } else {
+          dot.style.backgroundColor = "rgba(253,251,247,0.2)";
+          dot.style.width           = "10px";
+        }
+      });
     }
 
     // ── Navigation ──────────────────────────────────────────────────────────
-    function handleNext() {
-      currentIndex = currentIndex >= totalItems - 1 ? 0 : currentIndex + 1;
-      updateSliderPosition();
-    }
-
-    function handlePrev() {
-      currentIndex = currentIndex <= 0 ? totalItems - 1 : currentIndex - 1;
-      updateSliderPosition();
-    }
+    function handleNext() { currentIndex++; updateCarousel(); }
+    function handlePrev() { currentIndex--; updateCarousel(); }
 
     // ── Autoplay (30 seconds) ───────────────────────────────────────────────
     function startAutoplay() {
       stopAutoplay();
-      autoplayTimer = window.setInterval(handleNext, 30000);
+      autoplayTimer = window.setInterval(handleNext, 10000);
     }
-
     function stopAutoplay() {
       if (autoplayTimer) clearInterval(autoplayTimer);
     }
 
     // ── Event listeners ─────────────────────────────────────────────────────
-    nextBtn?.addEventListener("click", () => {
-      handleNext();
-      startAutoplay();
-    });
-    prevBtn?.addEventListener("click", () => {
-      handlePrev();
-      startAutoplay();
+    nextBtn?.addEventListener("click", () => { handleNext(); startAutoplay(); });
+    prevBtn?.addEventListener("click", () => { handlePrev(); startAutoplay(); });
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener("click", () => {
+        currentIndex = idx;
+        updateCarousel();
+        startAutoplay();
+      });
     });
 
-    // Pause on hover so users can read without the timer racing
+    // Pause on hover so users can read comfortably
     track.addEventListener("mouseenter", stopAutoplay);
     track.addEventListener("mouseleave", startAutoplay);
 
-    // Recalculate on resize (responsive column count may change)
-    window.addEventListener("resize", updateSliderPosition);
+    // Recalculate on viewport resize
+    window.addEventListener("resize", updateCarousel);
 
     // ── Init ────────────────────────────────────────────────────────────────
-    updateSliderPosition(); // sets position + spotlight for index 0
+    updateCarousel();
     startAutoplay();
   }
 
