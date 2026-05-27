@@ -1,0 +1,191 @@
+---
+/**
+ * src/pages/pricing.astro
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Pricing & Service Packages Page.
+ * Layout: Multi-tier editorial card structure matching the organic earth tone palette.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+
+const packages = [
+  {
+    name: "Essential Roots",
+    price: "₱12,500",
+    period: "per month",
+    description:
+      "Perfect for solo creatives and small boutique shops needing clean, accurate monthly baseline books.",
+    features: [
+      "Monthly bank & credit card reconciliation",
+      "Digital receipt management workflow",
+      "Essential Profit & Loss reporting",
+      "Email support check-ins",
+      "Tax-season ready data handoff",
+    ],
+    cta: "Get Started",
+    popular: false,
+  },
+  {
+    name: "Balanced Growth",
+    price: "₱22,000",
+    period: "per month",
+    description:
+      "Designed for scaling businesses that require consistent, forward-looking cash flow guidance and deeper analysis.",
+    features: [
+      "Everything in Essential Roots",
+      "Up to 4 separate business accounts tracked",
+      "Custom accounts receivable/payable summary",
+      "Bi-weekly performance dashboard updates",
+      "1-on-1 monthly financial health consultation",
+    ],
+    cta: "Partner with Us",
+    popular: true, // Highlights this card beautifully
+  },
+  {
+    name: "Custom Clean-Up",
+    price: "Custom",
+    period: "one-time project",
+    description:
+      "For businesses that are months (or years) behind and need historical accounts completely organized and corrected.",
+    features: [
+      "Full audit of historical bank records",
+      "Sorting and categorizing complex mixed receipts",
+      "Prior-year adjustments & reconciliation",
+      "Coordinating directly with your CPA",
+      "Clean slate foundation for future tracking",
+    ],
+    cta: "Request a Quote",
+    popular: false,
+  },
+];
+---
+
+<BaseLayout
+  title="Service Packages & Pricing — Seek First Books"
+  description="Transparent pricing structures for intentional monthly bookkeeping and full financial catch-ups."
+>
+  <NavBar />
+
+  <main class="w-full bg-[#FDFBF7] min-h-screen">
+    <section class="px-6 py-20 md:px-12 lg:px-20 max-w-screen-xl mx-auto">
+      <div class="max-w-2xl mx-auto text-center mb-16">
+        <p
+          class="text-[#A36A52] text-xs sm:text-sm tracking-[0.2em] uppercase font-sans font-semibold mb-3"
+        >
+          TRANSPARENT INVESTMENTS
+        </p>
+        <h1
+          class="text-3xl sm:text-5xl font-serif font-normal text-[#333D29] leading-[1.15] mb-4"
+        >
+          Packages tailored to your <span class="italic text-[#A36A52]"
+            >business depth</span
+          >
+        </h1>
+        <p
+          class="text-[#333D29]/70 text-sm sm:text-base font-sans leading-relaxed"
+        >
+          No complex hidden itemization structures or confusing jargon. Select
+          an intentional baseline partner program built completely around
+          creative routines.
+        </p>
+      </div>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto"
+      >
+        {
+          packages.map(
+            ({ name, price, period, description, features, cta, popular }) => (
+              <article
+                class={`
+              flex flex-col justify-between relative p-8 rounded-tl-3xl rounded-br-3xl transition-all duration-300
+              ${
+                popular
+                  ? "bg-white border-2 border-[#A36A52] shadow-md transform lg:-translate-y-2"
+                  : "bg-white/60 border border-[#333D29]/10 backdrop-blur-sm hover:shadow-sm hover:border-[#A36A52]/30"
+              }
+            `}
+              >
+                {popular && (
+                  <span class="absolute -top-3.5 left-8 bg-[#A36A52] text-[#FDFBF7] text-xs uppercase tracking-widest font-sans font-semibold px-3 py-1 rounded-full">
+                    Most Popular Partner Choice
+                  </span>
+                )}
+
+                <div>
+                  <h2 class="text-[#333D29] font-serif text-2xl font-normal mb-2">
+                    {name}
+                  </h2>
+                  <p class="text-[#333D29]/60 text-xs sm:text-sm font-sans min-h-[48px] leading-relaxed mb-6">
+                    {description}
+                  </p>
+
+                  <div class="flex items-baseline gap-2 mb-8 border-b border-[#333D29]/5 pb-6">
+                    <span class="text-4xl sm:text-5xl font-serif font-normal text-[#333D29] tracking-tight">
+                      {price}
+                    </span>
+                    <span class="text-[#333D29]/60 text-xs sm:text-sm italic font-serif">
+                      {period}
+                    </span>
+                  </div>
+
+                  <ul class="space-y-4 mb-8" role="list">
+                    {features.map((feature) => (
+                      <li class="flex items-start gap-3 text-sm text-[#333D29]/80 font-sans leading-snug">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="w-4 h-4 shrink-0 text-[#A36A52] mt-0.5"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <a
+                  href="/#cta"
+                  class={`
+                block text-center font-sans font-medium text-sm tracking-wide py-3.5 px-6 transition-all duration-300
+                rounded-tl-xl rounded-br-xl rounded-tr-sm rounded-bl-sm
+                ${
+                  popular
+                    ? "bg-[#A36A52] text-[#FDFBF7] hover:bg-[#A36A52]/90 shadow-sm"
+                    : "bg-[#333D29]/5 text-[#333D29] hover:bg-[#333D29] hover:text-[#FDFBF7]"
+                }
+              `}
+                >
+                  {cta}
+                </a>
+              </article>
+            ),
+          )
+        }
+      </div>
+
+      <div class="text-center mt-16 max-w-md mx-auto">
+        <p
+          class="text-xs sm:text-sm text-[#333D29]/60 font-sans leading-relaxed"
+        >
+          Need a completely custom ongoing combination or a micro-business tier?
+          Let’s map it out together. <a
+            href="/#cta"
+            class="text-[#A36A52] underline underline-offset-4 hover:text-[#333D29] font-medium"
+            >Get in touch here</a
+          >.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
