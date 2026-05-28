@@ -3,7 +3,7 @@
  * src/components/CTA.astro
  * ─────────────────────────────────────────────────────────────────────────────
  * Section 6 — Final Call To Action.
- * Layout: Full-width deep forest background — tagline · headline · premium pill CTA · contact paths.
+ * Layout: Full-width deep forest background — tagline · headline · CTA · contacts.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
@@ -18,13 +18,13 @@ const {
   tagline = "SELECT AN INTENTIONAL PARTNER FOR YOUR BUSINESS DEPTH",
   headline = "Ready to transition from financial overwhelm to absolute clarity?",
   ctaLabel = "Book an Intentional Consultation",
-  ctaHref = "mailto:seekfirstbooks@gmail.com",
+  ctaHref = "https://www.linkedin.com/in/queenie-mae-abucejo-jd-3aa746113/",
 } = Astro.props;
 
-// Contact Links & Details
 const contactDetails = {
   email: {
     label: "seekfirstbooks@gmail.com",
+    // Opens gmail.com in a new tab instead of the system mail client
     href: "https://gmail.com/",
   },
   whatsapp: {
@@ -79,8 +79,11 @@ const contactDetails = {
         We'd love to hear from you. Reach out anytime!
       </p>
 
+      <!-- CTA button — opens LinkedIn in a new tab -->
       <a
         href={ctaHref}
+        target="_blank"
+        rel="noopener noreferrer"
         class="inline-block bg-[#A36A52] text-[#FDFBF7] font-sans font-medium text-sm tracking-wide
           px-8 py-4 rounded-tl-xl rounded-br-xl rounded-tr-sm rounded-bl-sm
           hover:bg-[#A36A52]/90 hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5
@@ -92,24 +95,30 @@ const contactDetails = {
       <div class="w-24 h-px bg-[#FDFBF7]/20 my-4"></div>
 
       <div class="flex flex-col items-center gap-5 w-full font-sans">
+        <!-- Email — opens gmail.com in a new tab -->
         <div class="flex flex-col items-center">
           <span
             class="text-[#A36A52] text-xs uppercase tracking-widest font-semibold mb-1"
-            >Email</span
           >
+            Email
+          </span>
           <a
-            href={`mailto:${contactDetails.email.href}`}
+            href={contactDetails.email.href}
+            target="_blank"
+            rel="noopener noreferrer"
             class="text-[#FDFBF7] text-sm sm:text-base hover:text-[#A36A52] transition-colors duration-200"
           >
             {contactDetails.email.label}
           </a>
         </div>
 
+        <!-- WhatsApp -->
         <div class="flex flex-col items-center">
           <span
             class="text-[#A36A52] text-xs uppercase tracking-widest font-semibold mb-1"
-            >WhatsApp</span
           >
+            WhatsApp
+          </span>
           <a
             href={contactDetails.whatsapp.href}
             target="_blank"
@@ -120,11 +129,13 @@ const contactDetails = {
           </a>
         </div>
 
+        <!-- Social links -->
         <div class="flex flex-col items-center mt-2">
           <span
             class="text-[#A36A52] text-xs uppercase tracking-widest font-semibold mb-3"
-            >Connect With Us</span
           >
+            Connect With Us
+          </span>
           <div class="flex items-center gap-4">
             {
               contactDetails.socials.map((social) => (
