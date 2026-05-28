@@ -12,52 +12,87 @@ import Footer from "../components/Footer.astro";
 
 const packages = [
   {
-    name: "Essential Roots",
-    price: "₱12,500",
+    name: "The Base Plan",
+    price: "Starts at $220",
     period: "per month",
     description:
       "Perfect for solo creatives and small boutique shops needing clean, accurate monthly baseline books.",
     features: [
-      "Monthly bank & credit card reconciliation",
-      "Digital receipt management workflow",
-      "Essential Profit & Loss reporting",
-      "Email support check-ins",
-      "Tax-season ready data handoff",
+      "Full Monthly Accounting",
+      "Transaction Categorization",
+      "AR/AP Management",
+      "Bank Reconciliations",
+      "Financial Statements",
+      "Email Support",
     ],
     cta: "Get Started",
     popular: false,
   },
   {
-    name: "Balanced Growth",
-    price: "₱22,000",
+    name: "The Integrated Plan",
+    price: "$450",
     period: "per month",
     description:
       "Designed for scaling businesses that require consistent, forward-looking cash flow guidance and deeper analysis.",
     features: [
-      "Everything in Essential Roots",
-      "Up to 4 separate business accounts tracked",
-      "Custom accounts receivable/payable summary",
-      "Bi-weekly performance dashboard updates",
-      "1-on-1 monthly financial health consultation",
+      "Everything in The Base Plan",
+      "CRM Integrations",
+      "Workflow Automations",
+      "Chart of Accounts Optimization",
+      "System Troubleshooting",
     ],
     cta: "Partner with Us",
     popular: true, // Highlights this card beautifully
   },
+];
+
+const projectServices = [
   {
-    name: "Custom Clean-Up",
-    price: "Custom",
-    period: "one-time project",
+    title: "QuickBooks Initial Setup",
+    price: "Starts at $650",
     description:
-      "For businesses that are months (or years) behind and need historical accounts completely organized and corrected.",
+      "Complete QuickBooks configuration, Chart of Accounts setup, and initial data migration for a clean financial foundation.",
+  },
+  {
+    title: "Startup One-Year Clean-Up",
+    price: "Starts at $1,200",
+    description:
+      "Full reconciliation and correction of up to one year of bookkeeping to get your records accurate and audit-ready.",
+  },
+  {
+    title: "AI Automation with Accounting",
+    price: "Starts at $600",
+    description:
+      "Smart workflow automations connecting your tools to QuickBooks, reducing manual entry and human error.",
+  },
+];
+
+const budgetRates = [
+  {
+    title: "The Oversight Plan",
+    price: "Starting at $150 / month",
+    description:
+      "Best for owners who handle their own bookkeeping but want professional oversight and clarity.",
     features: [
-      "Full audit of historical bank records",
-      "Sorting and categorizing complex mixed receipts",
-      "Prior-year adjustments & reconciliation",
-      "Coordinating directly with your CPA",
-      "Clean slate foundation for future tracking",
+      "Monthly Account Review",
+      "Monthly Profit & Loss and Balance Sheet",
+      'Monthly "Health Check" Feedback',
+      "Chart of Accounts Lockdown",
+      "Direct Messaging Support (Email / WhatsApp)",
     ],
-    cta: "Request a Quote",
-    popular: false,
+  },
+  {
+    title: "Consultations & Advisory",
+    price: "$15 / hour",
+    description:
+      "For troubleshooting sessions, financial reviews, system audits, or strategic advisory beyond standard packages.",
+    features: [
+      "Troubleshooting Sessions",
+      "Financial Reviews",
+      "System Audits",
+      "Strategic Advisory",
+      "Software & Integration Guidance",
+    ],
   },
 ];
 ---
@@ -69,7 +104,7 @@ const packages = [
   <NavBar />
 
   <main class="w-full bg-[#FDFBF7] min-h-screen">
-    <section class="px-6 py-20 md:px-12 lg:px-20 max-w-screen-xl mx-auto">
+    <section class="px-6 pt-20 pb-16 md:px-12 lg:px-20 max-w-screen-xl mx-auto">
       <div class="max-w-2xl mx-auto text-center mb-16">
         <p
           class="text-[#A36A52] text-xs sm:text-sm tracking-[0.2em] uppercase font-sans font-semibold mb-3"
@@ -93,27 +128,19 @@ const packages = [
       </div>
 
       <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto"
+        class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto"
       >
         {
           packages.map(
             ({ name, price, period, description, features, cta, popular }) => (
               <article
-                class={`
-              flex flex-col justify-between relative p-8 rounded-tl-3xl rounded-br-3xl transition-all duration-300
-              ${
-                popular
-                  ? "bg-white border-2 border-[#A36A52] shadow-md transform lg:-translate-y-2"
-                  : "bg-white/60 border border-[#333D29]/10 backdrop-blur-sm hover:shadow-sm hover:border-[#A36A52]/30"
-              }
-            `}
+                class={`flex flex-col justify-between relative p-8 rounded-tl-3xl rounded-br-3xl transition-all duration-300 ${popular ? "bg-white border-2 border-[#A36A52] shadow-md transform lg:-translate-y-2" : "bg-white/60 border border-[#333D29]/10 backdrop-blur-sm hover:shadow-sm hover:border-[#A36A52]/30"}`}
               >
                 {popular && (
                   <span class="absolute -top-3.5 left-8 bg-[#A36A52] text-[#FDFBF7] text-xs uppercase tracking-widest font-sans font-semibold px-3 py-1 rounded-full">
                     Most Popular Partner Choice
                   </span>
                 )}
-
                 <div>
                   <h2 class="text-[#333D29] font-serif text-2xl font-normal mb-2">
                     {name}
@@ -121,7 +148,6 @@ const packages = [
                   <p class="text-[#333D29]/60 text-xs sm:text-sm font-sans min-h-[48px] leading-relaxed mb-6">
                     {description}
                   </p>
-
                   <div class="flex items-baseline gap-2 mb-8 border-b border-[#333D29]/5 pb-6">
                     <span class="text-4xl sm:text-5xl font-serif font-normal text-[#333D29] tracking-tight">
                       {price}
@@ -130,7 +156,6 @@ const packages = [
                       {period}
                     </span>
                   </div>
-
                   <ul class="space-y-4 mb-8" role="list">
                     {features.map((feature) => (
                       <li class="flex items-start gap-3 text-sm text-[#333D29]/80 font-sans leading-snug">
@@ -151,18 +176,9 @@ const packages = [
                     ))}
                   </ul>
                 </div>
-
                 <a
                   href="/#cta"
-                  class={`
-                block text-center font-sans font-medium text-sm tracking-wide py-3.5 px-6 transition-all duration-300
-                rounded-tl-xl rounded-br-xl rounded-tr-sm rounded-bl-sm
-                ${
-                  popular
-                    ? "bg-[#A36A52] text-[#FDFBF7] hover:bg-[#A36A52]/90 shadow-sm"
-                    : "bg-[#333D29]/5 text-[#333D29] hover:bg-[#333D29] hover:text-[#FDFBF7]"
-                }
-              `}
+                  class={`block text-center font-sans font-medium text-sm tracking-wide py-3.5 px-6 transition-all duration-300 rounded-tl-xl rounded-br-xl rounded-tr-sm rounded-bl-sm ${popular ? "bg-[#A36A52] text-[#FDFBF7] hover:bg-[#A36A52]/90 shadow-sm" : "bg-[#333D29]/5 text-[#333D29] hover:bg-[#333D29] hover:text-[#FDFBF7]"}`}
                 >
                   {cta}
                 </a>
@@ -171,20 +187,130 @@ const packages = [
           )
         }
       </div>
+    </section>
 
-      <div class="text-center mt-16 max-w-md mx-auto">
-        <p
-          class="text-xs sm:text-sm text-[#333D29]/60 font-sans leading-relaxed"
+    <hr class="border-[#333D29]/5 max-w-screen-xl mx-auto px-6 md:px-12" />
+
+    <section class="px-6 py-16 md:px-12 lg:px-20 max-w-screen-xl mx-auto">
+      <div class="text-center mb-12">
+        <h2
+          class="text-3xl font-serif font-normal text-[#333D29] tracking-tight mb-2"
         >
-          Need a completely custom ongoing combination or a micro-business tier?
-          Let’s map it out together. <a
-            href="/#cta"
-            class="text-[#A36A52] underline underline-offset-4 hover:text-[#333D29] font-medium"
-            >Get in touch here</a
-          >.
+          Specialized Project Services
+        </h2>
+        <p class="text-[#333D29]/60 text-sm font-sans font-light">
+          Transparent pricing for one-time projects tailored to your needs.
         </p>
       </div>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto items-stretch"
+      >
+        {
+          projectServices.map(({ title, price, description }) => (
+            <div class="bg-white/70 border border-[#333D29]/10 rounded-2xl p-6 flex flex-col justify-between hover:border-[#A36A52]/20 transition-all duration-300 shadow-sm">
+              <div>
+                <h3 class="text-[#333D29] font-serif text-lg font-normal text-center mb-2">
+                  {title}
+                </h3>
+                <p class="text-[#333D29] font-serif text-xl font-normal text-center text-[#A36A52] mb-4">
+                  {price}
+                </p>
+                <p class="text-[#333D29]/75 text-xs text-center leading-relaxed font-sans">
+                  {description}
+                </p>
+              </div>
+              <div class="mt-6 pt-2">
+                <a
+                  href="/#cta"
+                  class="block text-center text-xs font-sans font-medium text-[#333D29]/70 bg-[#333D29]/5 hover:bg-[#A36A52] hover:text-[#FDFBF7] py-2.5 rounded-tl-lg rounded-br-lg transition-all duration-300"
+                >
+                  Inquire Details
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+      <p class="text-center text-xs text-[#333D29]/50 font-sans mt-8">
+        Every business is unique — final pricing is based on your transaction
+        volume and complexity.
+      </p>
     </section>
+
+    <hr class="border-[#333D29]/5 max-w-screen-xl mx-auto px-6 md:px-12" />
+
+    <section
+      class="px-6 py-16 md:px-12 lg:px-20 max-w-screen-xl mx-auto bg-[#FDFBF7]"
+    >
+      <div class="text-center mb-12">
+        <h2
+          class="text-3xl font-serif font-normal text-[#333D29] tracking-tight mb-2"
+        >
+          Budget-Friendly Rates
+        </h2>
+        <p class="text-[#333D29]/60 text-sm font-sans font-light">
+          Flexible options for businesses that need guidance without
+          full-service bookkeeping.
+        </p>
+      </div>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch"
+      >
+        {
+          budgetRates.map(({ title, price, description, features }) => (
+            <div class="bg-white border border-[#333D29]/10 rounded-2xl p-8 flex flex-col justify-between shadow-sm">
+              <div>
+                <h3 class="text-[#333D29] font-serif text-xl font-normal mb-1">
+                  {title}
+                </h3>
+                <p class="text-[#A36A52] font-serif text-lg font-medium mb-3">
+                  {price}
+                </p>
+                <p class="text-[#333D29]/70 text-xs font-sans leading-relaxed mb-6 border-b border-[#333D29]/5 pb-4">
+                  {description}
+                </p>
+
+                <ul class="space-y-3" role="list">
+                  {features.map((feat) => (
+                    <li class="flex items-start gap-2 text-xs text-[#333D29]/80 font-sans">
+                      <span class="text-xs text-[#A36A52] select-none mt-0.5">
+                        •
+                      </span>
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div class="mt-8 pt-2">
+                <a
+                  href="/#cta"
+                  class="block text-center text-xs font-sans font-medium text-[#333D29] border border-[#333D29]/20 hover:border-[#A36A52] hover:bg-[#A36A52] hover:text-[#FDFBF7] py-3 rounded-tl-xl rounded-br-xl transition-all duration-300"
+                >
+                  Book Next Slot
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+      <p class="text-center text-xs text-[#333D29]/40 font-sans mt-8">
+        Does not include daily transaction categorization or bank
+        reconciliations.
+      </p>
+    </section>
+
+    <div class="text-center pb-20 max-w-md mx-auto px-6">
+      <p class="text-xs sm:text-sm text-[#333D29]/60 font-sans leading-relaxed">
+        Need a completely custom ongoing combination or a micro-business tier?
+        Let’s map it out together. <a
+          href="/#cta"
+          class="text-[#A36A52] underline underline-offset-4 hover:text-[#333D29] font-medium"
+          >Let’s discuss what works best for you</a
+        >.
+      </p>
+    </div>
   </main>
 
   <Footer />
