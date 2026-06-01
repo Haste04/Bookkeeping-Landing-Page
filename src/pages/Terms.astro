@@ -1,0 +1,326 @@
+---
+/**
+ * src/pages/Terms.astro
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Terms of Service — Seek First Books
+ * Styled to match the site's boutique earth palette.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+
+const lastUpdated = "June 2026";
+---
+
+<BaseLayout
+  title="Terms of Service — Seek First Books"
+  description="The terms and conditions governing use of Seek First Books services."
+>
+  <header class="sticky top-0 z-50">
+    <NavBar />
+  </header>
+
+  <main class="bg-[#FDFBF7]">
+    <div class="max-w-3xl mx-auto px-6 py-16 md:px-12 md:py-24">
+      <!-- Page header -->
+      <div class="mb-14 border-b border-[#333D29]/10 pb-10">
+        <p
+          class="text-[#A36A52] text-xs tracking-[0.2em] uppercase font-sans font-semibold mb-4"
+        >
+          Legal
+        </p>
+        <h1
+          class="text-4xl sm:text-5xl font-serif font-normal text-[#333D29] leading-tight mb-4"
+        >
+          Terms of Service
+        </h1>
+        <p class="text-[#333D29]/50 text-sm font-sans">
+          Last updated: {lastUpdated}
+        </p>
+      </div>
+
+      <!-- Body copy -->
+      <div
+        class="prose-section space-y-10 font-sans text-[#333D29]/80 text-sm sm:text-base leading-relaxed"
+      >
+        <!-- Intro -->
+        <section>
+          <p>
+            These Terms of Service ("Terms") govern your use of the Seek First
+            Books website and the bookkeeping services provided by Seek First
+            Books ("we," "our," or "us"). By booking a consultation, engaging
+            our services, or browsing our website, you agree to be bound by
+            these Terms.
+          </p>
+          <p class="mt-4">
+            Please read these Terms carefully. If you do not agree with any
+            part, please do not use our website or services.
+          </p>
+        </section>
+
+        <!-- 1 -->
+        <section aria-labelledby="tos-services">
+          <h2
+            id="tos-services"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            1. Services Provided
+          </h2>
+          <p class="mb-3">
+            Seek First Books offers boutique bookkeeping and financial system
+            services including but not limited to:
+          </p>
+          <ul class="space-y-2 pl-5 list-disc marker:text-[#A36A52]">
+            <li>Monthly bookkeeping and transaction categorisation</li>
+            <li>Financial reporting and profit &amp; loss summaries</li>
+            <li>QuickBooks and Xero setup and ongoing management</li>
+            <li>Business systems automation and workflow integration</li>
+            <li>Consultation and financial clarity sessions</li>
+          </ul>
+          <p class="mt-4">
+            The specific scope of services for each client will be outlined in a
+            separate service agreement or engagement letter prior to
+            commencement.
+          </p>
+        </section>
+
+        <!-- 2 -->
+        <section aria-labelledby="tos-engagement">
+          <h2
+            id="tos-engagement"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            2. Client Responsibilities
+          </h2>
+          <p class="mb-3">
+            To enable us to deliver accurate and timely services, you agree to:
+          </p>
+          <ul class="space-y-2 pl-5 list-disc marker:text-[#A36A52]">
+            <li>
+              Provide complete and accurate financial documents, receipts, and
+              records in a timely manner.
+            </li>
+            <li>
+              Notify us promptly of any changes to your business structure,
+              banking arrangements, or accounting software.
+            </li>
+            <li>
+              Review and approve all reports or summaries within the agreed
+              timeframe.
+            </li>
+            <li>
+              Ensure that any information shared with us does not infringe upon
+              the rights of any third party.
+            </li>
+          </ul>
+        </section>
+
+        <!-- 3 -->
+        <section aria-labelledby="tos-payment">
+          <h2
+            id="tos-payment"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            3. Fees and Payment
+          </h2>
+          <ul class="space-y-2 pl-5 list-disc marker:text-[#A36A52]">
+            <li>
+              Service fees are agreed upon in writing prior to engagement and
+              are outlined in your individual service agreement.
+            </li>
+            <li>
+              Invoices are due within the timeframe specified on the invoice.
+              Late payments may result in a pause of services until the
+              outstanding balance is settled.
+            </li>
+            <li>
+              All fees are quoted in Philippine Peso (PHP) unless otherwise
+              specified.
+            </li>
+            <li>
+              We reserve the right to revise our fees with reasonable advance
+              notice to existing clients.
+            </li>
+          </ul>
+        </section>
+
+        <!-- 4 -->
+        <section aria-labelledby="tos-confidentiality">
+          <h2
+            id="tos-confidentiality"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            4. Confidentiality
+          </h2>
+          <p>
+            We treat all client financial data and business information as
+            strictly confidential. We will not disclose your information to any
+            third party without your explicit consent, except as required by law
+            or as necessary to perform the agreed services (e.g., sharing data
+            with QuickBooks or Xero on your behalf).
+          </p>
+          <p class="mt-4">
+            This confidentiality obligation survives the termination of our
+            working relationship.
+          </p>
+        </section>
+
+        <!-- 5 -->
+        <section aria-labelledby="tos-ip">
+          <h2
+            id="tos-ip"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            5. Intellectual Property
+          </h2>
+          <p>
+            All templates, workflows, system designs, and proprietary processes
+            developed by Seek First Books remain our intellectual property
+            unless otherwise agreed in writing. Reports and summaries prepared
+            specifically for your business are yours to retain and use freely.
+          </p>
+          <p class="mt-4">
+            All content on this website — including text, graphics, and design —
+            is owned by Seek First Books and may not be reproduced without prior
+            written permission.
+          </p>
+        </section>
+
+        <!-- 6 -->
+        <section aria-labelledby="tos-limitation">
+          <h2
+            id="tos-limitation"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            6. Limitation of Liability
+          </h2>
+          <p>
+            Seek First Books provides bookkeeping and financial organisation
+            services and is not a licensed accounting firm, tax advisor, or
+            legal counsel. Our services do not constitute tax advice, audit, or
+            legal guidance.
+          </p>
+          <p class="mt-4">
+            To the fullest extent permitted by law, Seek First Books shall not
+            be liable for any indirect, incidental, or consequential damages
+            arising from the use of our services or reliance on the information
+            we provide. Our total liability in any matter shall not exceed the
+            total fees paid by you in the three months prior to the claim.
+          </p>
+        </section>
+
+        <!-- 7 -->
+        <section aria-labelledby="tos-termination">
+          <h2
+            id="tos-termination"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            7. Termination
+          </h2>
+          <p>
+            Either party may terminate a service engagement with written notice
+            as specified in the individual service agreement (typically 14–30
+            days). Upon termination, all outstanding invoices become immediately
+            due. We will return or securely delete your financial documents upon
+            written request after all fees have been settled.
+          </p>
+        </section>
+
+        <!-- 8 -->
+        <section aria-labelledby="tos-governing">
+          <h2
+            id="tos-governing"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            8. Governing Law
+          </h2>
+          <p>
+            These Terms are governed by the laws of the Republic of the
+            Philippines. Any disputes arising from these Terms or the use of our
+            services shall be resolved through good-faith negotiation, and if
+            unresolved, subject to the jurisdiction of the appropriate courts of
+            the Philippines.
+          </p>
+        </section>
+
+        <!-- 9 -->
+        <section aria-labelledby="tos-changes">
+          <h2
+            id="tos-changes"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            9. Changes to These Terms
+          </h2>
+          <p>
+            We reserve the right to update these Terms at any time. Continued
+            use of our website or services following any changes constitutes
+            your acceptance of the revised Terms. We will update the "Last
+            updated" date at the top of this page whenever changes are made.
+          </p>
+        </section>
+
+        <!-- 10 -->
+        <section aria-labelledby="tos-contact">
+          <h2
+            id="tos-contact"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            10. Contact Us
+          </h2>
+          <p>For questions or concerns about these Terms, please contact us:</p>
+          <div
+            class="mt-4 p-5 rounded-tl-2xl rounded-br-2xl bg-[#333D29]/5 border border-[#333D29]/10 space-y-1"
+          >
+            <p class="font-medium text-[#333D29]">Seek First Books</p>
+            <p>
+              Email:&nbsp;
+              <a
+                href="https://gmail.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-[#A36A52] hover:underline underline-offset-2"
+              >
+                seekfirstbooks@gmail.com
+              </a>
+            </p>
+            <p>
+              WhatsApp:&nbsp;
+              <a
+                href="https://wa.me/639175656032"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-[#A36A52] hover:underline underline-offset-2"
+              >
+                +63 917 565 6032
+              </a>
+            </p>
+          </div>
+        </section>
+      </div>
+      <!-- /prose-section -->
+
+      <!-- Back link -->
+      <div class="mt-14 pt-8 border-t border-[#333D29]/10">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-[#333D29]/60 hover:text-[#A36A52] text-sm font-sans transition-colors duration-200"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          Back to Home
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -11,27 +11,26 @@ const linkColumns = [
   {
     heading: "Services",
     links: [
-      { label: "Monthly Bookkeeping", href: "#services" },
-      { label: "Financial Clean-Ups", href: "#services" },
-      { label: "Workflow Automation", href: "#services" },
-      { label: "CPA Tax Readiness", href: "#services" },
+      { label: "Monthly Bookkeeping", href: "/#features" },
+      { label: "Financial Reporting", href: "/#features" },
+      { label: "QuickBooks / Xero Management", href: "/#features" },
+      { label: "Systems Automation", href: "/#features" },
     ],
   },
   {
     heading: "Studio",
     links: [
-      { label: "Our Story", href: "#about" },
-      { label: "The Process", href: "#value-prop" },
-      { label: "Client Stories", href: "#testimonials" },
-      { label: "Journal & Insights", href: "#journal" },
+      { label: "Our Story", href: "/#about" },
+      { label: "The Process", href: "/#features" },
+      { label: "Client Stories", href: "/#testimonials" },
     ],
   },
   {
     heading: "Resources",
     links: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
-      { label: "Contact Desk", href: "#cta" },
+      { label: "Privacy Policy", href: "/PrivacyPolicy" },
+      { label: "Terms of Service", href: "/Terms" },
+      { label: "Contact Desk", href: "/#cta" },
     ],
   },
 ] as const;
@@ -46,6 +45,7 @@ const linkColumns = [
     <div
       class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10 lg:gap-12"
     >
+      <!-- Brand column -->
       <div
         class="col-span-2 sm:col-span-3 lg:col-span-2 flex flex-col justify-between pr-0 lg:pr-8"
       >
@@ -53,23 +53,24 @@ const linkColumns = [
           <a
             href="/"
             class="text-[#333D29] font-serif font-normal text-2xl tracking-wide block mb-3 focus:outline-none"
-            aria-label="Queenie's Roots Bookkeeping Home"
+            aria-label="Seek First Books Home"
           >
             Seek First <span class="italic text-[#A36A52]">Books</span>
           </a>
           <p
             class="text-[#333D29]/70 text-sm leading-relaxed max-w-xs font-sans"
           >
-            Intentional bookkeeping workflows and financial clarity designed
-            specifically for independent women entrepreneurs and creative
-            spaces.
+            At Seek First Books, we provide accurate bookkeeping and efficient
+            financial systems that reduce stress, improve organisation, and
+            support sustainable business growth.
           </p>
         </div>
       </div>
 
+      <!-- Link columns -->
       {
         linkColumns.map(({ heading, links }) => (
-          <nav aria-label={`${heading} studio navigations`}>
+          <nav aria-label={`${heading} links`}>
             <h3 class="font-sans font-semibold text-[#333D29] tracking-wider uppercase text-xs mb-4">
               {heading}
             </h3>
@@ -88,60 +89,9 @@ const linkColumns = [
           </nav>
         ))
       }
-
-      <div class="col-span-2 sm:col-span-1">
-        <h3
-          class="font-sans font-semibold text-[#333D29] tracking-wider uppercase text-xs mb-4"
-        >
-          The Journal
-        </h3>
-
-        <form
-          class="flex items-center border-b border-[#333D29]/20 bg-transparent overflow-hidden py-1 group focus-within:border-[#A36A52] transition-colors duration-300"
-          onSubmit="event.preventDefault();"
-        >
-          <label for="footer-email" class="sr-only"
-            >Email address subscription input</label
-          >
-          <input
-            id="footer-email"
-            type="email"
-            name="email"
-            required
-            placeholder="Your email address"
-            class="flex-1 min-w-0 bg-transparent
-              text-[#333D29] text-sm placeholder:text-[#333D29]/40
-              py-1.5 pr-3 focus:outline-none font-sans"
-          />
-          <button
-            type="submit"
-            aria-label="Subscribe to financial journal updates"
-            class="flex items-center justify-center w-8 h-8 shrink-0 text-[#333D29] hover:text-[#A36A52] transition-colors duration-200 focus:outline-none"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform duration-200"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              aria-hidden="true"
-            >
-              <polyline
-                points="9 18 15 12 9 6"
-                stroke-linecap="round"
-                stroke-linejoin="round"></polyline>
-            </svg>
-          </button>
-        </form>
-
-        <p class="text-[#333D29]/60 text-xs mt-3 leading-relaxed font-sans">
-          Occasional letters on financial ease, business growth, and simple
-          systems.
-        </p>
-      </div>
     </div>
 
+    <!-- Bottom bar -->
     <div
       class="mt-12 pt-8 border-t border-[#333D29]/10 flex flex-col sm:flex-row items-center justify-between gap-4"
     >
@@ -151,7 +101,6 @@ const linkColumns = [
       </p>
       <div class="flex items-center gap-6 text-[#333D29]/40 text-xs font-sans">
         <span>2 Corinthians 8:21</span>
-        <span>Grounded in Faith and Love</span>
         <span>Made with Astro</span>
       </div>
     </div>
@@ -161,11 +110,8 @@ const linkColumns = [
 <script>
   function updateFooterYear() {
     const yearSpan = document.getElementById("footer-current-year");
-    if (yearSpan) {
-      yearSpan.textContent = new Date().getFullYear().toString();
-    }
+    if (yearSpan) yearSpan.textContent = new Date().getFullYear().toString();
   }
   updateFooterYear();
-  // Wire dynamic updates inside Astro Single Page Application router navigation changes safely
   document.addEventListener("astro:after-swap", updateFooterYear);
 </script>

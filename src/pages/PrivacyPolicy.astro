@@ -1,0 +1,331 @@
+---
+/**
+ * src/pages/PrivacyPolicy.astro
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Privacy Policy — Seek First Books
+ * Styled to match the site's boutique earth palette.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+
+const lastUpdated = "June 2026";
+---
+
+<BaseLayout
+  title="Privacy Policy — Seek First Books"
+  description="How Seek First Books collects, uses, and protects your personal information."
+>
+  <header class="sticky top-0 z-50">
+    <NavBar />
+  </header>
+
+  <main class="bg-[#FDFBF7]">
+    <div class="max-w-3xl mx-auto px-6 py-16 md:px-12 md:py-24">
+      <!-- Page header -->
+      <div class="mb-14 border-b border-[#333D29]/10 pb-10">
+        <p
+          class="text-[#A36A52] text-xs tracking-[0.2em] uppercase font-sans font-semibold mb-4"
+        >
+          Legal
+        </p>
+        <h1
+          class="text-4xl sm:text-5xl font-serif font-normal text-[#333D29] leading-tight mb-4"
+        >
+          Privacy Policy
+        </h1>
+        <p class="text-[#333D29]/50 text-sm font-sans">
+          Last updated: {lastUpdated}
+        </p>
+      </div>
+
+      <!-- Body copy -->
+      <div
+        class="prose-section space-y-10 font-sans text-[#333D29]/80 text-sm sm:text-base leading-relaxed"
+      >
+        <!-- Intro -->
+        <section aria-labelledby="pp-intro">
+          <p>
+            Seek First Books ("we," "our," or "us") is committed to protecting
+            the privacy of every client and visitor. This Privacy Policy
+            explains what information we collect, how we use it, and the choices
+            available to you when you use our website at <span
+              class="text-[#A36A52] font-medium">seekfirstbooks.com</span
+            > or engage our bookkeeping services.
+          </p>
+          <p class="mt-4">
+            By accessing our website or working with us, you agree to the
+            practices described in this policy. If you do not agree, please
+            discontinue use of our services.
+          </p>
+        </section>
+
+        <!-- 1 -->
+        <section aria-labelledby="pp-collect">
+          <h2
+            id="pp-collect"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            1. Information We Collect
+          </h2>
+          <p class="mb-3">
+            We may collect the following categories of information:
+          </p>
+          <ul class="space-y-2 pl-5 list-disc marker:text-[#A36A52]">
+            <li>
+              <span class="font-medium text-[#333D29]">Contact information</span
+              > — your name, email address, phone number, and business name provided
+              through our contact or booking forms.
+            </li>
+            <li>
+              <span class="font-medium text-[#333D29]">Financial data</span> — invoices,
+              bank statements, receipts, and related documents you share with us strictly
+              for the purpose of providing bookkeeping services.
+            </li>
+            <li>
+              <span class="font-medium text-[#333D29]"
+                >Communication records</span
+              > — emails, WhatsApp messages, or other correspondence between you and
+              Seek First Books.
+            </li>
+            <li>
+              <span class="font-medium text-[#333D29]">Usage data</span> — anonymised
+              browser, device, and page-view information collected automatically when
+              you visit our website (e.g., via cookies or analytics tools).
+            </li>
+          </ul>
+        </section>
+
+        <!-- 2 -->
+        <section aria-labelledby="pp-use">
+          <h2
+            id="pp-use"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            2. How We Use Your Information
+          </h2>
+          <p class="mb-3">We use the information we collect to:</p>
+          <ul class="space-y-2 pl-5 list-disc marker:text-[#A36A52]">
+            <li>
+              Deliver and manage bookkeeping and financial reporting services.
+            </li>
+            <li>
+              Communicate with you about your account, project updates, and
+              appointments.
+            </li>
+            <li>Send service-related notices, invoices, and reminders.</li>
+            <li>
+              Improve our website and understand how visitors interact with it.
+            </li>
+            <li>Comply with applicable legal and regulatory obligations.</li>
+          </ul>
+          <p class="mt-4">
+            We do <span class="font-medium text-[#333D29]">not</span> sell, rent,
+            or trade your personal information to third parties for marketing purposes.
+          </p>
+        </section>
+
+        <!-- 3 -->
+        <section aria-labelledby="pp-share">
+          <h2
+            id="pp-share"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            3. Sharing of Information
+          </h2>
+          <p class="mb-3">
+            We may share your information only in the following limited
+            circumstances:
+          </p>
+          <ul class="space-y-2 pl-5 list-disc marker:text-[#A36A52]">
+            <li>
+              <span class="font-medium text-[#333D29]">Service providers</span> —
+              trusted tools such as QuickBooks, Xero, or Google Workspace that we
+              use to perform our services. These providers have their own privacy
+              policies and are bound by data processing agreements.
+            </li>
+            <li>
+              <span class="font-medium text-[#333D29]">Legal requirements</span> —
+              when required by law, court order, or governmental authority.
+            </li>
+            <li>
+              <span class="font-medium text-[#333D29]">Business transfers</span> —
+              in the unlikely event of a merger or acquisition, your data may be transferred
+              as part of that transaction, subject to the same privacy protections.
+            </li>
+          </ul>
+        </section>
+
+        <!-- 4 -->
+        <section aria-labelledby="pp-security">
+          <h2
+            id="pp-security"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            4. Data Security
+          </h2>
+          <p>
+            We take reasonable technical and organisational measures to protect
+            your information against unauthorised access, loss, or disclosure.
+            Financial documents shared with us are handled with strict
+            confidentiality and stored only as long as necessary to fulfil the
+            agreed services.
+          </p>
+          <p class="mt-4">
+            While we take every precaution, no method of transmission over the
+            internet is 100% secure. We encourage you to contact us via our
+            official channels only.
+          </p>
+        </section>
+
+        <!-- 5 -->
+        <section aria-labelledby="pp-retention">
+          <h2
+            id="pp-retention"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            5. Data Retention
+          </h2>
+          <p>
+            We retain your personal and financial data for as long as your
+            client relationship is active and for a reasonable period
+            thereafter, or as required by applicable law. When data is no longer
+            needed, it is securely deleted or anonymised.
+          </p>
+        </section>
+
+        <!-- 6 -->
+        <section aria-labelledby="pp-rights">
+          <h2
+            id="pp-rights"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            6. Your Rights
+          </h2>
+          <p class="mb-3">You have the right to:</p>
+          <ul class="space-y-2 pl-5 list-disc marker:text-[#A36A52]">
+            <li>
+              Request access to the personal information we hold about you.
+            </li>
+            <li>Ask us to correct inaccurate or incomplete data.</li>
+            <li>
+              Request deletion of your personal data, subject to our legal
+              obligations.
+            </li>
+            <li>
+              Withdraw consent for specific processing activities at any time.
+            </li>
+          </ul>
+          <p class="mt-4">
+            To exercise any of these rights, please contact us at
+            <a
+              href="https://gmail.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-[#A36A52] hover:underline underline-offset-2 transition-colors duration-200"
+            >
+              seekfirstbooks@gmail.com
+            </a>.
+          </p>
+        </section>
+
+        <!-- 7 -->
+        <section aria-labelledby="pp-cookies">
+          <h2
+            id="pp-cookies"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            7. Cookies
+          </h2>
+          <p>
+            Our website may use basic cookies to understand visitor behaviour
+            and improve the browsing experience. You can disable cookies at any
+            time through your browser settings. Disabling cookies will not
+            affect your ability to access the core content of our site.
+          </p>
+        </section>
+
+        <!-- 8 -->
+        <section aria-labelledby="pp-changes">
+          <h2
+            id="pp-changes"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            8. Changes to This Policy
+          </h2>
+          <p>
+            We may update this Privacy Policy from time to time. When we do, we
+            will revise the "Last updated" date at the top of this page.
+            Continued use of our website or services after changes are posted
+            constitutes your acceptance of the updated policy.
+          </p>
+        </section>
+
+        <!-- 9 -->
+        <section aria-labelledby="pp-contact">
+          <h2
+            id="pp-contact"
+            class="text-lg sm:text-xl font-serif font-normal text-[#333D29] mb-3 pb-2 border-b border-[#333D29]/10"
+          >
+            9. Contact Us
+          </h2>
+          <p>
+            If you have any questions about this Privacy Policy, please reach
+            out:
+          </p>
+          <div
+            class="mt-4 p-5 rounded-tl-2xl rounded-br-2xl bg-[#333D29]/5 border border-[#333D29]/10 space-y-1"
+          >
+            <p class="font-medium text-[#333D29]">Seek First Books</p>
+            <p>
+              Email:&nbsp;
+              <a
+                href="https://gmail.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-[#A36A52] hover:underline underline-offset-2"
+              >
+                seekfirstbooks@gmail.com
+              </a>
+            </p>
+            <p>
+              WhatsApp:&nbsp;
+              <a
+                href="https://wa.me/639175656032"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-[#A36A52] hover:underline underline-offset-2"
+              >
+                +63 917 565 6032
+              </a>
+            </p>
+          </div>
+        </section>
+      </div>
+      <!-- /prose-section -->
+
+      <!-- Back link -->
+      <div class="mt-14 pt-8 border-t border-[#333D29]/10">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-[#333D29]/60 hover:text-[#A36A52] text-sm font-sans transition-colors duration-200"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          Back to Home
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
